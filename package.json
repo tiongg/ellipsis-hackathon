@@ -5,10 +5,10 @@
     "node": ">=20.0.0"
   },
   "scripts": {
-    "backend:docker-build": "docker build -t hackathon-be -f apps/backend/Dockerfile --network=host .",
-    "frontend:docker-build": "docker build -t hackathon-fe -f apps/frontend/Dockerfile --network=host .",
-    "backend:docker-run": "docker run -d -p 2000:2000 --env-file ./.env hackathon-be",
-    "frontend:docker-run": "docker run -p 3000:3000 --env-file ./.env hackathon-fe",
+    "backend:docker-build": "docker build -t ellipsis-hackathon-be -f apps/backend/Dockerfile --network=host .",
+    "frontend:docker-build": "docker build -t ellipsis-hackathon-fe -f apps/frontend/Dockerfile --network=host .",
+    "backend:docker-run": "docker run -d -p 2000:2000 --env-file ./.env ellipsis-hackathon-be",
+    "frontend:docker-run": "docker run -p 3000:3000 --env-file ./.env ellipsis-hackathon-fe",
     "dev": "npx nx run-many --target=dev --parallel 10"
   },
   "engineStrict": true,
