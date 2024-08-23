@@ -2,12 +2,19 @@
 
 Using nx repo and npm
 
-## To run:
+## Setting up:
 
-First install packages with npm
+Project is running on node **v21.5.0**. Either install it manually, or use [nvm](https://github.com/nvm-sh/nvm), and installing the release with:
+```bash
+nvm use
+```
+
+Next, install packages with npm
 ```bash
 npm i
 ```
+
+## Running the project
 
 To run both FE and BE:
 ```bash
