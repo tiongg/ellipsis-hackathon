@@ -4,6 +4,7 @@ FROM node:20.13.1-alpine3.19@sha256:291e84d956f1aff38454bbd3da38941461ad569a185c
 WORKDIR /app
 # To allow calls to sudo in postinstall scripts to run, look for alternate solution
 RUN apk add sudo
+ARG NEXT_PUBLIC_BACKEND_URL
 
 ENV NEXT_TELEMETRY_DISABLED 1
 ENV NX_DAEMON false
