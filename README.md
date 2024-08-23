@@ -2,6 +2,28 @@
 
 Using nx repo and npm
 
+## To run:
+
+First install packages with npm
+```bash
+npm i
+```
+
+To run both FE and BE:
+```bash
+npm run dev
+```
+
+Only BE:
+```bash
+npx nx run backend:dev
+```
+
+Only FE:
+```bash
+npx nx run frontend:dev
+```
+
 ## Packages
 
 1. Backend (Nest.js)
