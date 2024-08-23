@@ -12,7 +12,7 @@ export class ServerStatusService {
 
   getVersion() {
     return {
-      version: '1.0.0',
+      version: process.env.VERSION,
     };
   }
 }

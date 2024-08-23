@@ -10,4 +10,9 @@ export class ServerStatusController {
   getStatus() {
     return this.serverStatusService.getServerStatus();
   }
+
+  @Get('version')
+  getVersion() {
+    return this.serverStatusService.getVersion();
+  }
 }
