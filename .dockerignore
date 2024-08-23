@@ -1,0 +1,65 @@
+# flyctl launch added from .gitignore
+# Dependency directories
+**/node_modules
+**/jspm_packages
+
+# dotenv environment variable files
+**/.env
+**/.env.development.local
+**/.env.test.local
+**/.env.production.local
+**/.env.local
+
+# Yarn Integrity file
+**/.yarn-integrity
+
+# nx deps
+**/.nx
+
+# Next.js
+**/.next
+
+**/dist
+
+**/.eslintcache
+
+# flyctl launch added from apps/backend/.gitignore
+# compiled output
+apps/backend/dist
+apps/backend/node_modules
+
+# Logs
+apps/backend/**/logs
+apps/backend/**/*.log
+apps/backend/**/npm-debug.log*
+apps/backend/**/pnpm-debug.log*
+apps/backend/**/yarn-debug.log*
+apps/backend/**/yarn-error.log*
+apps/backend/**/lerna-debug.log*
+
+# OS
+apps/backend/**/.DS_Store
+
+# Tests
+apps/backend/coverage
+apps/backend/.nyc_output
+
+# IDEs and editors
+apps/backend/.idea
+apps/backend/**/.project
+apps/backend/**/.classpath
+apps/backend/**/.c9
+apps/backend/**/*.launch
+apps/backend/**/.settings
+apps/backend/**/*.sublime-workspace
+
+# IDE - VSCode
+apps/backend/**/.vscode/*
+!apps/backend/**/.vscode/settings.json
+!apps/backend/**/.vscode/tasks.json
+!apps/backend/**/.vscode/launch.json
+!apps/backend/**/.vscode/extensions.json
+
+#env
+apps/backend/**/.env
+fly.toml

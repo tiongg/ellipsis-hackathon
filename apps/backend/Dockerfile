@@ -5,8 +5,9 @@ WORKDIR /app
 # TODO: look for alternate solution
 RUN apt-get update && apt-get install -y sudo
 
-COPY package.json yarn.lock ./
-RUN yarn install --frozen-lockfile
+COPY package.json ./
+COPY package-lock.json ./
+RUN npm ci --legacy-peer-deps
 COPY . .
 
 ENV NX_DAEMON false

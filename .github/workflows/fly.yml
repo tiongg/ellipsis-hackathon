@@ -1,0 +1,68 @@
+name: Fly Deploy to Production
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - master
+
+env:
+  FLY_API_TOKEN: ${{ secrets.FLY_TOKEN_PROD }}
+  NEXT_PUBLIC_BACKEND_URL: ${{ secrets.BACKEND_URL_PROD }}
+  FLY_APP_NAME: ${{ secrets.FLY_BACKEND_APP_NAME_PROD }}
+  DB_PASSWORD: ${{ secrets.DB_PASSWORD_PROD }}
+  DB_HOST: ${{ secrets.DB_HOST_PROD }}
+  DB_NAME: ${{ secrets.DB_NAME_PROD }}
+  DB_USER: ${{ secrets.DB_USER_PROD }}
+  DB_DIALECT: ${{ secrets.DB_DIALECT }}
+  DB_PORT: ${{ secrets.DB_PORT_PROD }}
+  FRONTEND_DOMAIN: ${{ secrets.FRONTEND_DOMAIN_PROD }}
+  JWT_SECRET_KEY: ${{ secrets.JWT_SECRET_KEY_PROD }}
+  JWT_DURATION: ${{ secrets.JWT_DURATION_PROD }}
+  GOOGLE_CLIENT_ID: ${{ secrets.GOOGLE_CLIENT_ID_PROD }}
+  GOOGLE_CLIENT_SECRET: ${{ secrets.GOOGLE_CLIENT_SECRET_PROD }}
+  SGID_CLIENT_ID: ${{ secrets.SGID_CLIENT_ID_PROD }}
+  SGID_CLIENT_SECRET: ${{ secrets.SGID_CLIENT_SECRET_PROD }}
+  SGID_PRIVATE_KEY: ${{ secrets.SGID_PRIVATE_KEY_PROD }}
+  BACKEND_TZ: ${{ secrets.BACKEND_TZ }}
+  VERSION: ${{ vars.VERSION_PROD }}
+
+jobs:
+  deploy-frontend:
+    name: Deploy frontend app
+    environment: production
+    runs-on: ubuntu-latest
+    env:
+      LOG_LEVEL: debug
+    steps:
+      - uses: actions/checkout@v3
+      - uses: superfly/flyctl-actions/setup-flyctl@master
+      - run: flyctl deploy -c ./frontend/.fly/fly-prod.toml --build-arg NEXT_PUBLIC_BACKEND_URL="${NEXT_PUBLIC_BACKEND_URL}" --local-only .
+
+  deploy-backend:
+    name: Deploy backend app
+    environment: production
+    runs-on: ubuntu-latest
+    env:
+      LOG_LEVEL: debug
+    steps:
+      - uses: actions/checkout@v3
+      - uses: superfly/flyctl-actions/setup-flyctl@master
+      - run: |
+          flyctl deploy -a "${FLY_APP_NAME}" \
+            --env DB_PASSWORD="${DB_PASSWORD}" \
+            --env DB_HOST="${DB_HOST}" \
+            --env DB_NAME="${DB_NAME}" \
+            --env DB_USER="${DB_USER}" \
+            --env DB_DIALECT="${DB_DIALECT}" \
+            --env DB_PORT="${DB_PORT}" \
+            --env FRONTEND_DOMAIN="${FRONTEND_DOMAIN}" \
+            --env VERSION="${VERSION}" \
+            --env JWT_SECRET_KEY="${JWT_SECRET_KEY}" \
+            --env JWT_DURATION="${JWT_DURATION}" \
+            --env GOOGLE_CLIENT_ID="${GOOGLE_CLIENT_ID}" \
+            --env GOOGLE_CLIENT_SECRET="${GOOGLE_CLIENT_SECRET}" \
+            --env SGID_CLIENT_ID="${SGID_CLIENT_ID}"\
+            --env SGID_CLIENT_SECRET="${SGID_CLIENT_SECRET}"\
+            --env SGID_PRIVATE_KEY="${SGID_PRIVATE_KEY}"\
+            --env TZ="${BACKEND_TZ}" \
+            -c ./backend/.fly/fly-prod.toml --local-only .
