@@ -15,4 +15,9 @@ export class ServerStatusController {
   getVersion() {
     return this.serverStatusService.getVersion();
   }
+
+  @Get('database-status')
+  getDatabaseStatus() {
+    return this.serverStatusService.getDatabaseStatus();
+  }
 }

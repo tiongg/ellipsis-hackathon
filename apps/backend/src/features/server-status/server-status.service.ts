@@ -1,8 +1,13 @@
 import { Injectable } from '@nestjs/common';
+import { InjectDataSource } from '@nestjs/typeorm';
+import { DataSource } from 'typeorm';
 
 @Injectable()
 export class ServerStatusService {
-  constructor() {}
+  constructor(
+    @InjectDataSource()
+    private readonly dataSource: DataSource
+  ) {}
 
   getServerStatus() {
     return {
@@ -14,5 +19,9 @@ export class ServerStatusService {
     return {
       version: process.env.VERSION,
     };
+  }
+
+  getDatabaseStatus() {
+    return this.dataSource.query('SELECT 1');
   }
 }
