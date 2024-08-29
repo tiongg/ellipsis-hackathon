@@ -12,7 +12,15 @@ const nextConfig = {
     // See: https://github.com/gregberge/svgr
     svgr: false,
   },
-  output: 'standalone'
+  output: 'standalone',
+  async rewrites() {
+    return [
+      {
+        source: '/api/:path*',
+        destination: `${process.env.NEXT_PUBLIC_BACKEND_URL}/:path*`,
+      },
+    ];
+  },
 };
 
 const plugins = [
