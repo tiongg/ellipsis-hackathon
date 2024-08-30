@@ -1,7 +1,6 @@
 import { cn } from '@utils/cn';
 import BoxReveal from '@components/box-reveal';
 import DotPattern from '@components/dot-pattern';
-import Footer from '../components/Footer';
 
 export default async function IndexPage() {
   return (
@@ -29,7 +28,6 @@ export default async function IndexPage() {
           )}
         />
       </main>
-      <Footer />
     </>
   );
 }

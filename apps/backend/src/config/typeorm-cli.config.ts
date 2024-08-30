@@ -15,7 +15,7 @@ const {
   DB_LOGGING,
   NODE_ENV,
 } = process.env;
-const migrations = TYPEORM_MIGRATIONS || './apps/backend/src/migration/**/*.ts';
+const migrations = TYPEORM_MIGRATIONS || './apps/backend/migrations/**/*.ts';
 
 export default new DataSource({
   type: DB_DIALECT as any,
@@ -27,7 +27,7 @@ export default new DataSource({
   logging: DB_LOGGING === 'true',
   synchronize: true,
   migrations: [migrations],
-  entities: ['./backend/dist/**/*.entity.js'],
+  entities: ['./apps/backend/**/*.entity.ts'],
   subscribers: ['dist/src/subscriber/**/*.js', 'dist/src/**/*.subscriber.js'],
   namingStrategy: new SnakeNamingStrategy(),
   extra: {
