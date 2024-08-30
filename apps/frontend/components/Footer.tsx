@@ -18,7 +18,7 @@ export default function Footer() {
         </p>
       </div>
       <div>
-        <Link href="/storefront/onboard">Work with us!</Link>
+        <Link href="/storefront">Work with us!</Link>
       </div>
       <div className="flex flex-row justify-between border-t border-t-slate-600 py-4 text-slate-400 mt-auto w-full">
         <p>

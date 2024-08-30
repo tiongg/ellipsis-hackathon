@@ -2,6 +2,7 @@
 
 import { GetStorefrontsDto } from '@shared-types/features/storefront/get-storefronts.dto';
 import FullScreenCenter from 'apps/frontend/components/FullScreenCenter';
+import Link from 'next/link';
 import useSWR from 'swr';
 
 /**
@@ -15,7 +16,12 @@ export default function Storefront() {
     return <FullScreenCenter>Loading...</FullScreenCenter>;
   }
   if (data.length <= 0) {
-    return <FullScreenCenter>No storefronts found</FullScreenCenter>;
+    return (
+      <FullScreenCenter>
+        <p>No storefronts found</p>
+        <Link href="/storefront/onboard">Create one here!</Link>
+      </FullScreenCenter>
+    );
   }
 
   //TODO: Account for more stores haha
