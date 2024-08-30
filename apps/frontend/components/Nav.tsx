@@ -79,16 +79,25 @@ export default function Navbar() {
           </li>
         </ul>
 
-        <button
-          onClick={() => router.push(self ? '/' : '/auth/login')}
-          className="ml-4 bg-primary text-white p-2 px-4 rounded-md items-center gap-2 hidden md:flex"
-        >
-          {self ? 'Logout' : 'Login'}
-        </button>
-
         <button className="block md:hidden" onClick={handleToggleMenu}>
           <Bars3Icon className="w-6 h-6" />
         </button>
+
+        {!self ? (
+          <button
+            onClick={() => router.push('/auth/login')}
+            className="ml-4 bg-primary text-white p-2 px-4 rounded-md items-center gap-2"
+          >
+            Login
+          </button>
+        ) : (
+          <button
+            onClick={signOut}
+            className="ml-4 bg-primary text-white p-2 px-4 rounded-md items-center gap-2"
+          >
+            Logout
+          </button>
+        )}
 
         {isMenuOpen && (
           <div className="shadow-lg transition-all fixed top-full right-0 bg-white h-screen p-4 px-8 md:hidden">
@@ -133,21 +142,6 @@ export default function Navbar() {
                 </Link>
               </li>
             </ul>
-            {self ? (
-              <button
-                onClick={() => router.push('/auth/login')}
-                className="ml-4 bg-primary text-white p-2 px-4 rounded-md items-center gap-2"
-              >
-                Login
-              </button>
-            ) : (
-              <button
-                onClick={signOut}
-                className="ml-4 bg-primary text-white p-2 px-4 rounded-md items-center gap-2"
-              >
-                Logout
-              </button>
-            )}
           </div>
         )}
       </div>
