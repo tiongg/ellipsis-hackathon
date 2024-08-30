@@ -26,7 +26,7 @@ export default function HomePage() {
 
   return (
     <FullScreenCenter>
-      <h1>Welcome to the app, {self.name}!</h1>
+      {/* <h1>Welcome to the app, {self.name}!</h1> */}
       <ListingsNearYou />
     </FullScreenCenter>
   );

@@ -11,7 +11,7 @@ export default function Footer() {
   );
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-50 flex flex-col">
       <main className="flex-grow">
         {/* Your body content goes here */}
       </main>

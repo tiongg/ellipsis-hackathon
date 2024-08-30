@@ -60,6 +60,7 @@
     "rxjs": "^7.8.1",
     "sharp": "^0.33.5",
     "stripe": "^16.9.0",
+    "sweetalert": "^2.1.2",
     "swr": "^2.2.5",
     "tailwind-merge": "^2.5.2",
     "tailwindcss-animate": "^1.0.7",
