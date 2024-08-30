@@ -5,6 +5,9 @@ import FullScreenCenter from 'apps/frontend/components/FullScreenCenter';
 import Link from 'next/link';
 import useSWR from 'swr';
 
+import AddProductForm from './components/AddProductForm';
+import ProductList from './components/ProductList';
+
 /**
  * Main dashboard for storefront.
  *
@@ -29,8 +32,9 @@ export default function Storefront() {
 
   return (
     <FullScreenCenter>
-      <h1>Store: {storefront.storeName}</h1>
-      <p>Stats</p>
+      <p>Store: {storefront.storeName}</p>
+      <AddProductForm storeId={storefront.storeId} />
+      <ProductList storeId={storefront.storeId} />
     </FullScreenCenter>
   );
 }
