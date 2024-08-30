@@ -5,17 +5,10 @@ import {
   useContext,
   useMemo,
 } from 'react';
+import { SelfDto } from '@shared-types/features/auth/self-dto.dto';
 import useSWR from 'swr';
-import { getToken, removeToken } from '../utils/token';
 
-export type SelfDto = {
-  accountId: string;
-  orgs: string[];
-  /**
-   * Undefined if not onboarded
-   */
-  name?: string | undefined;
-};
+import { getToken, removeToken } from '../utils/token';
 
 export type AuthContext = Partial<{
   self: SelfDto;

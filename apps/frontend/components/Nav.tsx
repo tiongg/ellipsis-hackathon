@@ -1,5 +1,7 @@
 'use client';
+
 import { useRouter } from 'next/navigation';
+
 import { useAuth } from '../providers/AuthProviders';
 
 export default function Navbar() {
@@ -7,8 +9,8 @@ export default function Navbar() {
   const router = useRouter();
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light">
-      <p>navbar</p>
+    <nav className="navbar navbar-expand-lg navbar-light bg-light flex justify-between p-2 bg-slate-50">
+      <p>THIS IS A NAV BAR</p>
       {self ? (
         <button onClick={signOut}>Sign Out</button>
       ) : (

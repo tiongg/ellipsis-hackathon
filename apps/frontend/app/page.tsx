@@ -1,13 +1,10 @@
+import { cn } from '@utils/cn';
 import BoxReveal from '@components/box-reveal';
 import DotPattern from '@components/dot-pattern';
-import { cn } from '@utils/cn';
-import Footer from '../components/Footer';
-import Navbar from '../components/Nav';
 
 export default async function IndexPage() {
   return (
     <>
-      <Navbar />
       <main className="h-screen w-full flex">
         <div className="pl-12 my-auto">
           <p>Yet another</p>
@@ -31,7 +28,6 @@ export default async function IndexPage() {
           )}
         />
       </main>
-      <Footer />
     </>
   );
 }

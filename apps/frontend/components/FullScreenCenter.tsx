@@ -4,7 +4,7 @@ export type CenterProps = PropsWithChildren<{}>;
 
 export default function FullScreenCenter({ children }: CenterProps) {
   return (
-    <section className="d-flex flex-column align-items-center justify-content-center min-vw-100 min-vh-100">
+    <section className="d-flex flex-column align-items-center justify-content-center min-vw-100 min-vh-100 h-lvh">
       {children}
     </section>
   );

@@ -40,11 +40,24 @@ export default function AuthRedirectPage({
         setToken(res.data.jwtToken);
         return fetchSelf();
       })
-      .then(() => {
-        router.push('/');
+      .then((self) => {
+        if (!self) {
+          // ?? BE died prolly
+          router.push('/');
+          return;
+        }
+        if (self.name) {
+          router.push('/home');
+        } else {
+          router.push('/auth/onboarding');
+        }
       })
       .catch(() => router.push('/auth/login'));
   }, [authProvider, code]);
 
-  return <FullScreenCenter>Redirecting...</FullScreenCenter>;
+  return (
+    <FullScreenCenter>
+      <p>Redirecting...</p>
+    </FullScreenCenter>
+  );
 }

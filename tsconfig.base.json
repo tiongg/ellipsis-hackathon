@@ -22,7 +22,8 @@
       "@backend/*": ["apps/backend/src/*"],
       "@components/*": ["packages/ui/src/ui/*", "packages/ui/src/magicui/*"],
       "@frontend/*": ["apps/frontend/src/*"],
-      "@utils/*": ["packages/utils/src/*"]
+      "@utils/*": ["packages/utils/src/*"],
+      "@shared-types/*": ["packages/shared-types/src/*"]
     }
   },
   "exclude": ["node_modules", "tmp"]

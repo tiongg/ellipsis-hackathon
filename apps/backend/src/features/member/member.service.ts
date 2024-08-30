@@ -21,4 +21,18 @@ export class MemberService {
   getMember(accountId: string) {
     return this.memberRepository.findOneBy({ accountId });
   }
+
+  /**
+   * Compelete profile onboarding (Currently just name)
+   * @param accountId - Account id of the member
+   * @param name - Members name
+   */
+  completeProfile(accountId: string, name: string) {
+    return this.memberRepository.update(
+      { accountId },
+      {
+        name,
+      }
+    );
+  }
 }

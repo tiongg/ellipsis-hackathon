@@ -1,8 +1,11 @@
 'use client';
 
-import axios from 'axios';
 import { PropsWithChildren } from 'react';
+import axios from 'axios';
 import { SWRConfig } from 'swr';
+
+import Footer from '../components/Footer';
+import Navbar from '../components/Nav';
 import AuthProvider from '../providers/AuthProviders';
 import { fetcher } from '../utils/fetcher';
 import { getToken } from '../utils/token';
@@ -26,7 +29,12 @@ export default function Providers({ children }: PropsWithChildren) {
         fetcher,
       }}
     >
-      <AuthProvider>{children}</AuthProvider>
+      <AuthProvider>
+        {/* Might not make sense being in providers, but idc */}
+        <Navbar />
+        {children}
+        <Footer />
+      </AuthProvider>
     </SWRConfig>
   );
 }
