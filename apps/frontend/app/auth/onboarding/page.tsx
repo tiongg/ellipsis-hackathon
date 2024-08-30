@@ -15,7 +15,7 @@ async function updateName(dto: CompleteProfileDto) {
 }
 
 /**
- * Page for users to input name
+ * Page for users to input name, and complete profile onboarding.
  */
 export default function OnboardingPage() {
   const router = useRouter();
