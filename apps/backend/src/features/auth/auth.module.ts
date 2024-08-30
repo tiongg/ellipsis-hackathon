@@ -9,12 +9,9 @@ import { MemberService } from '../member/member.service';
 import { AuthenticationController } from './auth.controller';
 import { AuthenticationService } from './auth.service';
 import { GoogleAuthenticationController } from './controllers/google-auth.controller';
-import { SgidAuthenticationController } from './controllers/sgid-auth.controller';
 import { GoogleAuthenticationService } from './services/google-auth.service';
-import { SgidAuthenticationService } from './services/sgid-auth.service';
 import { GoogleStrategy } from './strategy/google-auth.strategy';
 import { JwtStrategy } from './strategy/jwt.strategy';
-import { SgidStrategy } from './strategy/sgid-auth.strategy';
 
 @Module({
   imports: [
@@ -33,15 +30,15 @@ import { SgidStrategy } from './strategy/sgid-auth.strategy';
   controllers: [
     AuthenticationController,
     GoogleAuthenticationController,
-    SgidAuthenticationController,
+    // SgidAuthenticationController,
   ],
   providers: [
     AuthenticationService,
     GoogleAuthenticationService,
-    SgidAuthenticationService,
+    // SgidAuthenticationService,
     MemberService,
     GoogleStrategy,
-    SgidStrategy,
+    // SgidStrategy,
     JwtStrategy,
   ],
 })
