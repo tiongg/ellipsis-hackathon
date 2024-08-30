@@ -3,7 +3,13 @@
 import { GetProductsDto } from '@shared-types/features/products/get-products.dto';
 import useSWR from 'swr';
 
-import { Card } from '@components/card';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@components/card';
 
 type ProductListProps = { storeId: string };
 
@@ -22,19 +28,27 @@ export default function ProductList({ storeId }: ProductListProps) {
   return (
     <div>
       <h1>Products</h1>
-      <Card className="w-[350px]">
-        <ul>
-          {data.map((product) => (
-            <li key={product.productId}>
-              <p>{product.productName}</p>
-              <p>{product.productDescription}</p>
-              <p>{product.productPrice}</p>
-              <p>{product.productWeight}</p>
-              <img src={product.productImageUrl} alt={product.productName} />
-            </li>
-          ))}
-        </ul>
-      </Card>
+      <div className="flex flex-row gap-2">
+        {data.map((product) => (
+          <Card key={product.productId} className="w-100">
+            <CardHeader>
+              <CardTitle>{product.productName}</CardTitle>
+              <CardDescription>{product.productDescription}</CardDescription>
+            </CardHeader>
+            <CardContent className="flex flex-col gap-2">
+              <img
+                src={product.productImageUrl}
+                alt={product.productName}
+                width={250}
+                height={200}
+              />
+              {/* product price is actually */}
+              <p>Price: ${parseInt(`${product.productPrice}`).toFixed(2)}</p>
+              <p>Weight: {product.productWeight}kg</p>
+            </CardContent>
+          </Card>
+        ))}
+      </div>
     </div>
   );
 }

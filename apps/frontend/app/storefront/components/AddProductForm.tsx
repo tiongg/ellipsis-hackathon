@@ -1,6 +1,6 @@
 'use client';
 
-import { DialogClose } from '@radix-ui/react-dialog';
+import { useState } from 'react';
 import { CreateProductDto } from '@shared-types/features/products/create-product.dto';
 import axios from 'axios';
 import { useForm } from 'react-hook-form';
@@ -14,7 +14,6 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
 } from '@components/dialog';
 import { Input } from '@components/input';
 import { Label } from '@components/label';
@@ -42,12 +41,18 @@ export default function AddProductForm({ storeId }: AddProductFormProps) {
     handleSubmit,
     formState: { errors },
   } = useForm<FormInputs>();
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <Dialog>
-      <DialogTrigger asChild>
-        <Button variant="outline">Add Product</Button>
-      </DialogTrigger>
+    <Dialog open={isOpen}>
+      <Button
+        variant="outline"
+        onClick={() => {
+          setIsOpen(true);
+        }}
+      >
+        Add Product
+      </Button>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
           <DialogTitle>Add product</DialogTitle>
@@ -69,23 +74,23 @@ export default function AddProductForm({ storeId }: AddProductFormProps) {
           </form>
         </DialogHeader>
         <DialogFooter>
-          <DialogClose asChild>
-            <Button variant="outline">Cancel</Button>
-          </DialogClose>
-          <DialogClose asChild>
-            <Button
-              variant="default"
-              onClick={() => {
-                // We dont actually want to suppress default here
-                // Button should submit form, and close dialog
-                handleSubmit(async (data) => {
-                  await addProduct(storeId, data);
-                });
-              }}
-            >
-              Save
-            </Button>
-          </DialogClose>
+          <Button
+            variant="outline"
+            onClick={() => {
+              setIsOpen(false);
+            }}
+          >
+            Cancel
+          </Button>
+          <Button
+            variant="default"
+            onClick={handleSubmit(async (data) => {
+              await addProduct(storeId, data);
+              setIsOpen(false);
+            })}
+          >
+            Save
+          </Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>
