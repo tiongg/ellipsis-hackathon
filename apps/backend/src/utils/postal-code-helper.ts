@@ -32,7 +32,6 @@ export async function postalCodeToLongLat(postalCode: string): Promise<Point> {
       },
     }
   );
-  console.log(res);
   if (res.data.found === 0) {
     throw new Error('Postal code not found');
   }
