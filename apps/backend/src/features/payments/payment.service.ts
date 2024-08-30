@@ -132,6 +132,7 @@ export class PaymentService {
       default:
         console.log(`Unhandled event type ${event.type}`);
     }
+    return res.status(200);
   }
 
   async handleSuccessfulPayment(session: Stripe.Checkout.Session) {
