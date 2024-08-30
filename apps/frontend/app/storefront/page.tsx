@@ -2,7 +2,10 @@
 
 import { GetStorefrontsDto } from '@shared-types/features/storefront/get-storefronts.dto';
 import FullScreenCenter from 'apps/frontend/components/FullScreenCenter';
+import Link from 'next/link';
 import useSWR from 'swr';
+
+import StorefrontPage from './components/StorefrontPage';
 
 /**
  * Main dashboard for storefront.
@@ -15,7 +18,12 @@ export default function Storefront() {
     return <FullScreenCenter>Loading...</FullScreenCenter>;
   }
   if (data.length <= 0) {
-    return <FullScreenCenter>No storefronts found</FullScreenCenter>;
+    return (
+      <FullScreenCenter>
+        <p>No storefronts found</p>
+        <Link href="/storefront/onboard">Create one here!</Link>
+      </FullScreenCenter>
+    );
   }
 
   //TODO: Account for more stores haha
@@ -23,8 +31,10 @@ export default function Storefront() {
 
   return (
     <FullScreenCenter>
-      <h1>Store: {storefront.storeName}</h1>
-      <p>Stats</p>
+      <div className="flex gap-4 flex-col p-4">
+        <p>Store: {storefront.storeName}</p>
+        <StorefrontPage storeId={storefront.storeId} />
+      </div>
     </FullScreenCenter>
   );
 }

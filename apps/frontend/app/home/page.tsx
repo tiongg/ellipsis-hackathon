@@ -4,6 +4,8 @@ import FullScreenCenter from 'apps/frontend/components/FullScreenCenter';
 import { useAuth } from 'apps/frontend/providers/AuthProviders';
 import { useRouter } from 'next/navigation';
 
+import ListingsNearYou from './components/ListingsNearYou';
+
 /**
  * Main landing page. Assumes user is logged in already.
  */
@@ -25,6 +27,7 @@ export default function HomePage() {
   return (
     <FullScreenCenter>
       <h1>Welcome to the app, {self.name}!</h1>
+      <ListingsNearYou />
     </FullScreenCenter>
   );
 }
