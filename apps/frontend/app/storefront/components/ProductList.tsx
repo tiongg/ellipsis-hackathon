@@ -22,7 +22,7 @@ export default function ProductList({ storeId }: ProductListProps) {
   return (
     <div>
       <h1>Products</h1>
-      <Card>
+      <Card className="w-[350px]">
         <ul>
           {data.map((product) => (
             <li key={product.productId}>

@@ -6,6 +6,7 @@ import { ServerStatusModule } from '@backend/features/server-status/server-statu
 import { DatabaseConfigurationService } from './config/typeorm.config';
 import { AuthenticationModule } from './features/auth/auth.module';
 import { JwtAuthGuard } from './features/auth/guards/jwt-auth.guard';
+import { ListingModule } from './features/listing/listing.module';
 import { MemberModule } from './features/member/member.module';
 import { ProductsModule } from './features/products/products.module';
 import { StorefrontModule } from './features/storefront/storefront.module';
@@ -20,6 +21,7 @@ import { StorefrontModule } from './features/storefront/storefront.module';
     MemberModule,
     StorefrontModule,
     ProductsModule,
+    ListingModule,
   ],
   providers: [
     {

@@ -6,6 +6,7 @@ import Link from 'next/link';
 import useSWR from 'swr';
 
 import AddProductForm from './components/AddProductForm';
+import OpenShop from './components/OpenShop';
 import ProductList from './components/ProductList';
 
 /**
@@ -32,9 +33,12 @@ export default function Storefront() {
 
   return (
     <FullScreenCenter>
-      <p>Store: {storefront.storeName}</p>
-      <AddProductForm storeId={storefront.storeId} />
-      <ProductList storeId={storefront.storeId} />
+      <div className="flex gap-4 flex-col p-4">
+        <p>Store: {storefront.storeName}</p>
+        <AddProductForm storeId={storefront.storeId} />
+        <ProductList storeId={storefront.storeId} />
+        <OpenShop storeId={storefront.storeId} />
+      </div>
     </FullScreenCenter>
   );
 }
