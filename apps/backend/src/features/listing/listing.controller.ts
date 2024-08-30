@@ -1,5 +1,6 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Query } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
+import { GetListingDto } from '@shared-types/features/listing/get-listing.dto';
 import { OpenShopDto } from '@shared-types/features/listing/open-shop.dto';
 
 import { ListingService } from './listing.service';
@@ -15,6 +16,8 @@ export class ListingController {
   create a listing, and it links to the shop.
   But closing shop we need the shopId, since listings might
   be gone (i.e sold).
+
+  Note that 'emptying' out a store automatically closes it.
    */
   //TODO: Authorization here
   @Post('open')
@@ -28,7 +31,11 @@ export class ListingController {
   }
 
   @Get()
-  getAllListings() {
-    return this.listingService.getAllListings();
+  getAllListings(@Query('storeId') storeId?: string): Promise<GetListingDto> {
+    if (!storeId) {
+      return this.listingService.getAllListings();
+    } else {
+      return this.listingService.getAllStoreListings(storeId);
+    }
   }
 }

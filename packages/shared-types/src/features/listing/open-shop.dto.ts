@@ -1,6 +1,6 @@
-export type OpenShopDto = ListingDto[];
+export type OpenShopDto = OpenListingDto[];
 
-export type ListingDto = {
+export type OpenListingDto = {
   productId: string;
   quantity: number;
 };

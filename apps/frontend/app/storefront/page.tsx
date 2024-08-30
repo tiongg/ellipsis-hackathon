@@ -5,9 +5,7 @@ import FullScreenCenter from 'apps/frontend/components/FullScreenCenter';
 import Link from 'next/link';
 import useSWR from 'swr';
 
-import AddProductForm from './components/AddProductForm';
-import OpenShop from './components/OpenShop';
-import ProductList from './components/ProductList';
+import StorefrontPage from './components/StorefrontPage';
 
 /**
  * Main dashboard for storefront.
@@ -35,9 +33,7 @@ export default function Storefront() {
     <FullScreenCenter>
       <div className="flex gap-4 flex-col p-4">
         <p>Store: {storefront.storeName}</p>
-        <AddProductForm storeId={storefront.storeId} />
-        <ProductList storeId={storefront.storeId} />
-        <OpenShop storeId={storefront.storeId} />
+        <StorefrontPage storeId={storefront.storeId} />
       </div>
     </FullScreenCenter>
   );

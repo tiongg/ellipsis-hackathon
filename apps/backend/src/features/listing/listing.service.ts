@@ -24,6 +24,21 @@ export class ListingService {
     });
   }
 
+  async getAllStoreListings(storeId: string) {
+    return this.listingRepository.find({
+      where: {
+        product: {
+          storeId,
+        },
+      },
+      relations: {
+        product: {
+          store: true,
+        },
+      },
+    });
+  }
+
   /**
    * Creates listings for a store, and 'opens' the store
    * @param listings - Listing information
