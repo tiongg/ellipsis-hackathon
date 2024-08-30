@@ -1,4 +1,12 @@
-import { Body, Controller, Get, Param, Post, Query } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Post,
+  Query,
+} from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { GetListingDto } from '@shared-types/features/listing/get-listing.dto';
 import { OpenShopDto } from '@shared-types/features/listing/open-shop.dto';
@@ -37,5 +45,10 @@ export class ListingController {
     } else {
       return this.listingService.getAllStoreListings(storeId);
     }
+  }
+
+  @Delete(':listingId')
+  deleteListing(@Param('listingId') listingId: string) {
+    return this.listingService.removeListing(listingId);
   }
 }

@@ -24,6 +24,10 @@ export class ListingService {
     });
   }
 
+  /**
+   * All listings for a given store
+   * @param storeId - Store to get listings for
+   */
   async getAllStoreListings(storeId: string) {
     return this.listingRepository.find({
       where: {
@@ -66,5 +70,13 @@ export class ListingService {
       },
       soldAt: IsNull(),
     });
+  }
+
+  /**
+   * Manually remove listing
+   * @param listingId - Listing to remove
+   */
+  async removeListing(listingId: string) {
+    await this.listingRepository.delete(listingId);
   }
 }

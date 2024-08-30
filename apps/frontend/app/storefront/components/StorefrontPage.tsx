@@ -2,9 +2,9 @@ import { GetListingDto } from '@shared-types/features/listing/get-listing.dto';
 import useSWR from 'swr';
 
 import AddProductForm from './AddProductForm';
-import ListingsList from './ListingsList';
 import OpenShop from './OpenShop';
 import ProductList from './ProductList';
+import ListingsList from './StoreListingsList';
 
 type StorefrontPageProps = {
   storeId: string;
