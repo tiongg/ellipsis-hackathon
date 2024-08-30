@@ -21,7 +21,7 @@
     "paths": {
       "@backend/*": ["apps/backend/src/*"],
       "@components/*": ["packages/ui/src/ui/*", "packages/ui/src/magicui/*"],
-      "@frontend/*": ["apps/frontend/src/*"],
+      "@frontend/*": ["apps/frontend/*"],
       "@utils/*": ["packages/utils/src/*"],
       "@shared-types/*": ["packages/shared-types/src/*"]
     }

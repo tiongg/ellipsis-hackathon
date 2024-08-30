@@ -1,9 +1,9 @@
 'use client';
 
-import FullScreenCenter from 'apps/frontend/components/FullScreenCenter';
-import { useAuth } from 'apps/frontend/providers/AuthProviders';
 import { useRouter } from 'next/navigation';
 
+import { useAuth } from '@frontend/providers/AuthProviders';
+import FullScreenCenter from '../../components/FullScreenCenter';
 import ListingsNearYou from './components/ListingsNearYou';
 
 /**

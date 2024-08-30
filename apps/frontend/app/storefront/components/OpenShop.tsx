@@ -21,9 +21,10 @@ type OpenShopProps = {
   storeId: string;
 };
 
-async function openShop(data: OpenShopDto) {
+async function openShop(storeId: string, data: OpenShopDto) {
   const res = await axios.post(`/api/listing/open`, data);
-  mutate(`/api/listings`);
+  mutate(`/api/listing`);
+  mutate(`/api/listing?storeId=${storeId}`);
   return res.data;
 }
 
@@ -43,7 +44,7 @@ export default function OpenShop({ storeId }: OpenShopProps) {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button>Add Product</Button>
+        <Button>Open shop</Button>
       </DialogTrigger>
       {isLoading || !products ? (
         <DialogContent>
@@ -87,6 +88,7 @@ export default function OpenShop({ storeId }: OpenShopProps) {
                 // We dont actually want to suppress default here
                 // Button should submit form, and close dialog
                 openShop(
+                  storeId,
                   Object.entries(openShopData).map(([productId, quantity]) => ({
                     productId,
                     quantity,

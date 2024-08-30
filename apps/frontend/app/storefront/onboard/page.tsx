@@ -1,13 +1,14 @@
 'use client';
 
 import { CreateStorefrontDto } from '@shared-types/features/storefront/create-storefront.dto';
-import FullScreenCenter from 'apps/frontend/components/FullScreenCenter';
-import { useAuth } from 'apps/frontend/providers/AuthProviders';
 import axios from 'axios';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { mutate } from 'swr';
+
+import { useAuth } from '@frontend/providers/AuthProviders';
+import FullScreenCenter from '../../../components/FullScreenCenter';
 
 type FormInputs = CreateStorefrontDto;
 

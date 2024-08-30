@@ -2,11 +2,12 @@
 
 import { useState } from 'react';
 import { CompleteProfileDto } from '@shared-types/features/onboarding/complete-profile.dto';
-import FullScreenCenter from 'apps/frontend/components/FullScreenCenter';
-import { useAuth } from 'apps/frontend/providers/AuthProviders';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
 import { mutate } from 'swr';
+
+import FullScreenCenter from '@frontend/components/FullScreenCenter';
+import { useAuth } from '@frontend/providers/AuthProviders';
 
 async function updateName(dto: CompleteProfileDto) {
   const res = await axios.patch('/api/member/complete-profile', dto);

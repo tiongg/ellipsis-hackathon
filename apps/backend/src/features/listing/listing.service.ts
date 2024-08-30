@@ -16,6 +16,9 @@ export class ListingService {
   //TODO: In range
   async getAllListings() {
     return this.listingRepository.find({
+      where: {
+        soldAt: IsNull(),
+      },
       relations: {
         product: {
           store: true,
@@ -34,6 +37,7 @@ export class ListingService {
         product: {
           storeId,
         },
+        soldAt: IsNull(),
       },
       relations: {
         product: {
@@ -78,5 +82,33 @@ export class ListingService {
    */
   async removeListing(listingId: string) {
     await this.listingRepository.delete(listingId);
+  }
+
+  /**
+   * Get available listings for a product
+   * @param productId - Product to get listings for
+   * @param quantity - Number of listings to get
+   */
+  async getAvailableListings(productId: string, quantity: number) {
+    return this.listingRepository.find({
+      where: {
+        productId,
+        soldAt: IsNull(),
+      },
+      relations: {
+        product: true,
+      },
+      take: quantity,
+    });
+  }
+
+  /**
+   * Mark a listing as sold
+   * @param listings - Listing to mark as sold
+   */
+  async markListingsAsSold(listings: string[]) {
+    await this.listingRepository.update(listings, {
+      soldAt: 'NOW()',
+    });
   }
 }
