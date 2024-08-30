@@ -38,11 +38,12 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: superfly/flyctl-actions/setup-flyctl@master
-      - run: flyctl deploy \
-      -c ./apps/frontend/.fly/fly.toml \
-      --build-arg NEXT_PUBLIC_BACKEND_URL="${NEXT_PUBLIC_BACKEND_URL}" \
-      --build-arg STIPE_PUBLISHABLE_KEY="${STIPE_PUBLISHABLE_KEY}" \
-      --local-only .
+      - run: |
+          flyctl deploy \
+            -c ./apps/frontend/.fly/fly.toml \
+            --build-arg NEXT_PUBLIC_BACKEND_URL="${NEXT_PUBLIC_BACKEND_URL}" \
+            --build-arg STIPE_PUBLISHABLE_KEY="${STIPE_PUBLISHABLE_KEY}" \
+            --local-only .
 
   deploy-backend:
     name: Deploy backend app
