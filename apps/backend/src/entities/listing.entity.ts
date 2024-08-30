@@ -14,8 +14,11 @@ export class Listing extends BaseEntity {
   @PrimaryGeneratedColumn('uuid')
   listingId: string;
 
-  @Column()
-  soldAt: Date;
+  @Column({
+    type: 'time without time zone',
+    nullable: true,
+  })
+  soldAt: string;
 
   @ManyToOne(() => Product)
   @JoinColumn({ name: 'product_id' })
