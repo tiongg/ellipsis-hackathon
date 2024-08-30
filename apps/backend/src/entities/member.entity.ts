@@ -8,6 +8,7 @@ import {
 } from 'typeorm';
 
 import { Account } from './account.entity';
+import { StoreMembership } from './store-membership.entity';
 
 @Entity()
 export class Member extends BaseEntity {
@@ -25,4 +26,9 @@ export class Member extends BaseEntity {
 
   @Column()
   accountId!: string;
+
+  @OneToOne(() => StoreMembership, (membership) => membership.member, {
+    nullable: true,
+  })
+  membership?: StoreMembership;
 }

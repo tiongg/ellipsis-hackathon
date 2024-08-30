@@ -4,9 +4,12 @@ import {
   CreateDateColumn,
   DeleteDateColumn,
   Entity,
+  OneToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
+
+import { Member } from './member.entity';
 
 /**
  * Account entity
@@ -34,4 +37,7 @@ export class Account extends BaseEntity {
 
   @DeleteDateColumn()
   deletedDate!: Date;
+
+  @OneToOne(() => Member, (member) => member.account, { nullable: true })
+  member: Member;
 }

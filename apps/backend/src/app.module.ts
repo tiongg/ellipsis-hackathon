@@ -1,12 +1,13 @@
 import { Module } from '@nestjs/common';
+import { APP_GUARD } from '@nestjs/core';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
 import { ServerStatusModule } from '@backend/features/server-status/server-status.module';
-import { APP_GUARD } from '@nestjs/core';
 import { DatabaseConfigurationService } from './config/typeorm.config';
 import { AuthenticationModule } from './features/auth/auth.module';
 import { JwtAuthGuard } from './features/auth/guards/jwt-auth.guard';
 import { MemberModule } from './features/member/member.module';
+import { StorefrontModule } from './features/storefront/storefront.module';
 
 @Module({
   imports: [
@@ -16,6 +17,7 @@ import { MemberModule } from './features/member/member.module';
     ServerStatusModule,
     AuthenticationModule,
     MemberModule,
+    StorefrontModule,
   ],
   providers: [
     {

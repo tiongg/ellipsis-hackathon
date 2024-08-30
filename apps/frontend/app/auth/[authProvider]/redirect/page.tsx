@@ -13,6 +13,11 @@ async function redirectWithProvider(prefix: string, code: string) {
   );
 }
 
+/**
+ * Page that handles the redirect from the auth provider.
+ *
+ * oauth2 will redirect to this page with a code, which we then use to get a jwt token.
+ */
 export default function AuthRedirectPage({
   params,
 }: {
