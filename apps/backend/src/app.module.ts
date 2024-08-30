@@ -7,6 +7,7 @@ import { DatabaseConfigurationService } from './config/typeorm.config';
 import { AuthenticationModule } from './features/auth/auth.module';
 import { JwtAuthGuard } from './features/auth/guards/jwt-auth.guard';
 import { MemberModule } from './features/member/member.module';
+import { ProductsModule } from './features/products/products.module';
 import { StorefrontModule } from './features/storefront/storefront.module';
 
 @Module({
@@ -18,6 +19,7 @@ import { StorefrontModule } from './features/storefront/storefront.module';
     AuthenticationModule,
     MemberModule,
     StorefrontModule,
+    ProductsModule,
   ],
   providers: [
     {
