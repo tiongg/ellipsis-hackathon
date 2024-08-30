@@ -38,6 +38,8 @@
     "cookie-parser": "^1.4.6",
     "express-session": "^1.18.0",
     "framer-motion": "^11.3.30",
+    "immer": "^10.1.1",
+    "lodash": "^4.17.21",
     "lru-cache": "^11.0.0",
     "lucide-react": "^0.429.0",
     "nestjs-zod": "^3.0.0",
@@ -59,7 +61,8 @@
     "tailwindcss-animate": "^1.0.7",
     "tslib": "^2.6.3",
     "typeorm": "^0.3.20",
-    "typeorm-naming-strategies": "^4.1.0"
+    "typeorm-naming-strategies": "^4.1.0",
+    "use-immer": "^0.10.0"
   },
   "devDependencies": {
     "@ianvs/prettier-plugin-sort-imports": "^4.3.1",
