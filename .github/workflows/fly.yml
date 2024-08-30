@@ -23,6 +23,7 @@ env:
   SGID_PRIVATE_KEY: ${{ secrets.SGID_PRIVATE_KEY }}
   STRIPE_SECRET_KEY: ${{ secrets.STRIPE_SECRET_KEY }}
   STIPE_PUBLISHABLE_KEY: ${{ secrets.STIPE_PUBLISHABLE_KEY }}
+  STRIPE_SIGNING_SECRET: ${{ secrets.STRIPE_SIGNING_SECRET }}
   NEXT_PUBLIC_BACKEND_URL: ${{ vars.BACKEND_URL }}
   FRONTEND_DOMAIN: ${{ vars.FRONTEND_DOMAIN }}
   BACKEND_DOMAIN: ${{ vars.BACKEND_URL }}
@@ -74,4 +75,5 @@ jobs:
             --env TZ="${BACKEND_TZ}" \
             --env BACKEND_DOMAIN="${BACKEND_DOMAIN}" \
             --env STRIPE_SECRET_KEY="${STRIPE_SECRET_KEY}" \
+            --env STRIPE_SIGNING_SECRET="${STRIPE_SIGNING_SECRET}" \
             -c ./apps/backend/.fly/fly.toml --local-only .
