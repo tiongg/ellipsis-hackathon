@@ -98,7 +98,7 @@ export class PaymentService {
         memberId,
         paymentId: payment.paymentId,
       },
-      success_url: `${process.env.FRONTEND_DOMAIN}/checkout/success?paymentId=${payment.paymentId}`,
+      success_url: `${process.env.FRONTEND_DOMAIN}/checkout/success/${payment.paymentId}`,
       cancel_url: `${process.env.FRONTEND_DOMAIN}/checkout/cancel`,
     });
 

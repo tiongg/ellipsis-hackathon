@@ -3,7 +3,6 @@
 import { GetPaymentInfoDto } from '@shared-types/features/payment/get-payment-info.dto';
 import _ from 'lodash';
 import Link from 'next/link';
-import { useSearchParams } from 'next/navigation';
 import useSWR from 'swr';
 
 import FullScreenCenter from '@frontend/components/FullScreenCenter';
@@ -16,9 +15,11 @@ import {
   CardTitle,
 } from '@components/card';
 
-export default function CheckoutSuccessPage() {
-  const searchParams = useSearchParams();
-  const paymentId = searchParams.get('paymentId');
+export default function CheckoutSuccessPage({
+  params: { paymentId },
+}: {
+  params: { paymentId: string };
+}) {
   //This can be ssr
   const { data, isLoading } = useSWR<GetPaymentInfoDto>(
     `/api/payment/${paymentId}`
