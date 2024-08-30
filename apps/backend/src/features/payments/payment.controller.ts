@@ -1,7 +1,9 @@
 import {
   Body,
   Controller,
+  Get,
   Post,
+  Query,
   RawBodyRequest,
   Req,
   Res,
@@ -35,5 +37,10 @@ export class PaymentController {
     @Res() res: Response
   ) {
     return this.paymentService.handleWebhook(req, res);
+  }
+
+  @Get(':paymentId')
+  async getPayment(@Query('paymentId') paymentId: string) {
+    return this.paymentService.getPaymentInfo(paymentId);
   }
 }

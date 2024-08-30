@@ -35,6 +35,7 @@ export class PaymentService {
     this.webhookSecret = configService.get<string>('STRIPE_SIGNING_SECRET')!;
   }
 
+  //im gonna cry
   async createCheckoutSession(user: RequestUserType, dto: BuyProductDto) {
     if (!user.member) {
       throw new UnauthorizedException();
@@ -97,7 +98,7 @@ export class PaymentService {
         memberId,
         paymentId: payment.paymentId,
       },
-      success_url: `${process.env.FRONTEND_DOMAIN}/checkout/success`,
+      success_url: `${process.env.FRONTEND_DOMAIN}/checkout/success?paymentId=${payment.paymentId}`,
       cancel_url: `${process.env.FRONTEND_DOMAIN}/checkout/cancel`,
     });
 
@@ -156,5 +157,20 @@ export class PaymentService {
     await this.listingService.markListingsAsSold(
       orders.map((order) => order.listingId)
     );
+  }
+
+  async getPaymentInfo(paymentId: string) {
+    return this.paymentRepository.findOne({
+      where: {
+        paymentId,
+      },
+      relations: {
+        orders: {
+          listing: {
+            product: true,
+          },
+        },
+      },
+    });
   }
 }

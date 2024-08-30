@@ -1,4 +1,12 @@
-import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  BaseEntity,
+  Column,
+  Entity,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
+
+import { Order } from './order.entity';
 
 @Entity()
 export class Payment extends BaseEntity {
@@ -7,6 +15,9 @@ export class Payment extends BaseEntity {
 
   @Column()
   memberId: string;
+
+  @OneToMany(() => Order, (order) => order.payment)
+  orders: Order[];
 
   @Column({
     nullable: true,
