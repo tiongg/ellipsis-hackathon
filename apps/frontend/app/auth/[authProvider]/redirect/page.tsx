@@ -1,11 +1,12 @@
 'use client';
 
-import FullScreenCenter from 'apps/frontend/components/FullScreenCenter';
-import { useAuth } from 'apps/frontend/providers/AuthProviders';
-import useOneTimeEffectOnTruthy from 'apps/frontend/utils/hooks/useOneTimeEffectOnTruthy';
-import { setToken } from 'apps/frontend/utils/token';
 import axios from 'axios';
 import { useRouter, useSearchParams } from 'next/navigation';
+
+import FullScreenCenter from '@frontend/components/FullScreenCenter';
+import { useAuth } from '@frontend/providers/AuthProviders';
+import useOneTimeEffectOnTruthy from '@frontend/utils/hooks/useOneTimeEffectOnTruthy';
+import { setToken } from '@frontend/utils/token';
 
 async function redirectWithProvider(prefix: string, code: string) {
   return await axios.post<{ jwtToken: string }>(

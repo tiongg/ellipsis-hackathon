@@ -14,7 +14,8 @@
     "db:run-migrations": "npm run typeorm -- -d ./apps/backend/src/config/typeorm-cli.config.ts migration:run",
     "db:revert-migration": "npm run typeorm -- -d ./apps/backend/src/config/typeorm-cli.config.ts migration:revert",
     "db:show-migrations": "npm run typeorm -- -d ./apps/backend/src/config/typeorm-cli.config.ts migration:show",
-    "db:create-migration": "npm run typeorm -- -d ./apps/backend/src/config/typeorm-cli.config.ts migration:generate"
+    "db:create-migration": "npm run typeorm -- -d ./apps/backend/src/config/typeorm-cli.config.ts migration:generate",
+    "stripe:forward-webhook": "stripe listen --forward-to localhost:2000/payment/webhook"
   },
   "engineStrict": true,
   "dependencies": {
@@ -33,6 +34,7 @@
     "@radix-ui/react-slot": "^1.1.0",
     "@swc/helpers": "~0.5.12",
     "axios": "^1.7.5",
+    "body-parser": "^1.20.2",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "cookie-parser": "^1.4.6",
@@ -56,6 +58,7 @@
     "rimraf": "^6.0.1",
     "rxjs": "^7.8.1",
     "sharp": "^0.33.5",
+    "stripe": "^16.9.0",
     "swr": "^2.2.5",
     "tailwind-merge": "^2.5.2",
     "tailwindcss-animate": "^1.0.7",

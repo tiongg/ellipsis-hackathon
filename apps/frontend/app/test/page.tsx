@@ -1,27 +1,25 @@
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from '@components/dialog';
+'use client';
+
+import axios from 'axios';
+
+import { Button } from '@components/button';
+
+async function createCheckoutSesssion() {
+  const res = await axios.post('/api/payment/checkout-session');
+  const checkoutUrl = res.data.url;
+  window.location = checkoutUrl;
+}
 
 export default function TestPage() {
   return (
     <main className="h-screen">
-      <Dialog>
-        <DialogTrigger>Open</DialogTrigger>
-        <DialogContent>
-          <DialogHeader>
-            <DialogTitle>Are you absolutely sure?</DialogTitle>
-            <DialogDescription>
-              This action cannot be undone. This will permanently delete your
-              account and remove your data from our servers.
-            </DialogDescription>
-          </DialogHeader>
-        </DialogContent>
-      </Dialog>
+      <Button
+        onClick={() => {
+          createCheckoutSesssion();
+        }}
+      >
+        Checkout
+      </Button>
     </main>
   );
 }

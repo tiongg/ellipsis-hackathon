@@ -1,5 +1,6 @@
-import FullScreenCenter from 'apps/frontend/components/FullScreenCenter';
 import Link from 'next/link';
+
+import FullScreenCenter from '../../../components/FullScreenCenter';
 
 /**
  * Login page. Lists all login providers

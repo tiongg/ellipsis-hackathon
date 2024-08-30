@@ -64,4 +64,8 @@ export class StorefrontService {
     });
     return memberships.map((x) => x.store);
   }
+
+  getStoreDetails(storeId: string) {
+    return this.storeRepository.findOneBy({ storeId });
+  }
 }

@@ -6,7 +6,9 @@ import { AppModule } from '@backend/app.module';
 const { SERVER_PORT } = process.env;
 
 async function bootstrap() {
-  const app = await NestFactory.create<NestExpressApplication>(AppModule);
+  const app = await NestFactory.create<NestExpressApplication>(AppModule, {
+    rawBody: true,
+  });
 
   app.enableCors({
     origin: process.env.FRONTEND_DOMAIN,

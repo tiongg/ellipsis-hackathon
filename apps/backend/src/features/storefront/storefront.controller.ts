@@ -39,4 +39,9 @@ export class StorefrontController {
     }
     return this.storefrontService.getUsersStorefront(user.member.memberId);
   }
+
+  @Get(':storeId')
+  getStoreDetails(storeId: string) {
+    return this.storefrontService.getStoreDetails(storeId);
+  }
 }

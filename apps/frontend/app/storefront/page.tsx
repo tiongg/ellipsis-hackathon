@@ -1,10 +1,10 @@
 'use client';
 
 import { GetStorefrontsDto } from '@shared-types/features/storefront/get-storefronts.dto';
-import FullScreenCenter from 'apps/frontend/components/FullScreenCenter';
 import Link from 'next/link';
 import useSWR from 'swr';
 
+import FullScreenCenter from '../../components/FullScreenCenter';
 import StorefrontPage from './components/StorefrontPage';
 
 /**

@@ -21,8 +21,11 @@ env:
   SGID_CLIENT_ID: ${{ secrets.SGID_CLIENT_ID }}
   SGID_CLIENT_SECRET: ${{ secrets.SGID_CLIENT_SECRET }}
   SGID_PRIVATE_KEY: ${{ secrets.SGID_PRIVATE_KEY }}
+  STRIPE_SECRET_KEY: ${{ secrets.STRIPE_SECRET_KEY }}
+  STIPE_PUBLISHABLE_KEY: ${{ secrets.STIPE_PUBLISHABLE_KEY }}
   NEXT_PUBLIC_BACKEND_URL: ${{ vars.BACKEND_URL }}
   FRONTEND_DOMAIN: ${{ vars.FRONTEND_DOMAIN }}
+  BACKEND_DOMAIN: ${{ vars.BACKEND_URL }}
   VERSION: ${{ vars.VERSION }}
 
 jobs:
@@ -35,7 +38,11 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: superfly/flyctl-actions/setup-flyctl@master
-      - run: flyctl deploy -c ./apps/frontend/.fly/fly.toml --build-arg NEXT_PUBLIC_BACKEND_URL="${NEXT_PUBLIC_BACKEND_URL}" --local-only .
+      - run: flyctl deploy \
+      -c ./apps/frontend/.fly/fly.toml \
+      --build-arg NEXT_PUBLIC_BACKEND_URL="${NEXT_PUBLIC_BACKEND_URL}" \
+      --build-arg STIPE_PUBLISHABLE_KEY="${STIPE_PUBLISHABLE_KEY}" \
+      --local-only .
 
   deploy-backend:
     name: Deploy backend app
@@ -64,4 +71,6 @@ jobs:
             --env SGID_CLIENT_SECRET="${SGID_CLIENT_SECRET}"\
             --env SGID_PRIVATE_KEY="${SGID_PRIVATE_KEY}"\
             --env TZ="${BACKEND_TZ}" \
+            --env BACKEND_DOMAIN="${BACKEND_DOMAIN}" \
+            --env STRIPE_SECRET_KEY="${STRIPE_SECRET_KEY}" \
             -c ./apps/backend/.fly/fly.toml --local-only .

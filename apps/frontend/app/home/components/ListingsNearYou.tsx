@@ -3,6 +3,7 @@ import {
   GetListingDto,
 } from '@shared-types/features/listing/get-listing.dto';
 import _ from 'lodash';
+import { useRouter } from 'next/navigation';
 import useSWR from 'swr';
 
 import { Card } from '@components/card';
@@ -19,9 +20,15 @@ function IndividualListing({
 }) {
   const product = productListing[0].product;
   const quantity = productListing.length;
+  const router = useRouter();
 
   return (
-    <Card className="w-[350px]">
+    <Card
+      className="w-[350px] cursor-pointer"
+      onClick={() => {
+        router.push(`/store/${product.store.storeId}`);
+      }}
+    >
       <img src={product.productImageUrl} alt={product.productName} />
       <p>{product.productName}</p>
       <p>Quantity: {quantity}x</p>
