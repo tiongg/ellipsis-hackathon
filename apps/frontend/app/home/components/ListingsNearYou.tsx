@@ -1,88 +1,30 @@
 import { FormEvent, useRef, useState } from 'react';
 import { MagnifyingGlassIcon } from '@heroicons/react/24/outline';
-import {
-  DisplayListingDto,
-  GetListingDto,
-} from '@shared-types/features/listing/get-listing.dto';
+import { GetListingDto } from '@shared-types/features/listing/get-listing.dto';
 import _ from 'lodash';
-import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import useSWR from 'swr';
 
-import { Card } from '@components/card';
-import RestaurantListing, { withTopRatedLabel } from './RestaurantCard';
+import RestaurantListing, {
+  Restaurant,
+  withTopRatedLabel,
+} from './RestaurantCard';
 
-/**
- * Single listing item containing details + quantity
- *
- * Assumes every product in the array is the same!
- */
-function IndividualListing({
-  productListing,
-}: {
-  productListing: DisplayListingDto[];
-}) {
-  const product = productListing[0].product;
-  const quantity = productListing.length;
-  const router = useRouter();
-
-  return (
-    <Card
-      className="w-[350px] cursor-pointer"
-      onClick={() => {
-        router.push(`/store/${product.store.storeId}`);
-      }}
-    >
-      <img src={product.productImageUrl} alt={product.productName} />
-      <p>{product.productName}</p>
-      <p>Quantity: {quantity}x</p>
-      <p>From: {product.store.storeName}</p>
-    </Card>
-  );
-}
-
-const restaurants = [
-  {
-    id: 1,
-    name: 'McDonalds',
-    rating: 4.5,
-    cuisines: ['Fast Food', 'Burgers'],
-    locality: 'Singapore',
-    imageUrl:
-      'https://images.inc.com/uploaded_files/image/1920x1080/getty_84709618_387335.jpg',
-  },
-  {
-    id: 2,
-    name: 'Burger King',
-    rating: 4.3,
-    cuisines: ['Fast Food', 'Burgers'],
-    locality: 'Singapore',
-    imageUrl:
-      'https://imageio.forbes.com/specials-images/dam/imageserve/1058912512/960x0.jpg?height=474&width=711&fit=bounds',
-  },
-  {
-    id: 3,
-    name: 'KFC',
-    rating: 4.1,
-    cuisines: ['Fast Food', 'Burgers'],
-    locality: 'Singapore',
-    imageUrl:
-      'https://t3.ftcdn.net/jpg/05/41/62/96/360_F_541629636_RlfZtQI6uIOW9Uj52x6HpczOlFNVps4L.jpg',
-  },
-  {
-    id: 4,
-    name: 'Subway',
-    rating: 4.0,
-    cuisines: ['Fast Food', 'Burgers'],
-    locality: 'Singapore',
-    imageUrl:
-      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPxNlMn5pRr_C1FdqJLfkXNgw08vcxZTidLw&s',
-  },
+const imageUrls = [
+  //Macs
+  'https://images.inc.com/uploaded_files/image/1920x1080/getty_84709618_387335.jpg',
+  //Burger King
+  'https://imageio.forbes.com/specials-images/dam/imageserve/1058912512/960x0.jpg?height=474&width=711&fit=bounds',
+  //KFC
+  'https://t3.ftcdn.net/jpg/05/41/62/96/360_F_541629636_RlfZtQI6uIOW9Uj52x6HpczOlFNVps4L.jpg',
+  //Subway
+  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPxNlMn5pRr_C1FdqJLfkXNgw08vcxZTidLw&s',
 ];
+const RestaurantCardTopRated = withTopRatedLabel(RestaurantListing);
 
 export default function ListingsNearYou() {
   const [filteredRestaurants, setFilteredRestaurants] = useState([]);
-  const serachRef = useRef(null);
+  const searchRef = useRef(null);
 
   const handleSearch = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -97,15 +39,25 @@ export default function ListingsNearYou() {
 
   //Group products together and count
   //TODO: why is this not done on the be???
-  const groupedListings = _.groupBy(listings, (listing) => listing.productId);
-
-  const RestaurantCardTopRated = withTopRatedLabel(RestaurantListing);
+  const groupedListings = _.groupBy(
+    listings ?? [],
+    (listing) => listing.product.store.storeId
+  );
+  const stores = Object.entries(groupedListings).reduce<
+    Record<string, Restaurant>
+  >((acc, [storeId, productListing]) => {
+    const { storeName } = productListing[0].product.store;
+    acc[storeId] = {
+      name: storeName,
+      rating: Math.floor(Math.random() * 10) / 10 + 4,
+      cuisines: ['Fast Food', 'Burgers'],
+      locality: 'Singapore',
+      imageUrl: imageUrls[Math.floor(Math.random() * imageUrls.length)],
+    };
+    return acc;
+  }, {});
 
   return (
-    //  /* <p>Current listings:</p>
-    // {Object.entries(groupedListings).map(([productId, productListing]) => (
-    //   <IndividualListing key={productId} productListing={productListing} />
-    // ))} */
     <div className="container">
       <h1 className="my-4 mt-8 font-bold text-2xl text-zinc-700">
         Restaurants near you
@@ -120,7 +72,7 @@ export default function ListingsNearYou() {
           id="search"
           placeholder="Search for Mcdonald"
           className="p-2 px-4 rounded-md border outline-none focus-within:border-primary border-gray-200 grow w-full"
-          ref={serachRef}
+          ref={searchRef}
         />
         <button
           type="submit"
@@ -135,13 +87,13 @@ export default function ListingsNearYou() {
       <br />
 
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-8">
-        {restaurants.map((restaurant, i) => (
+        {Object.entries(stores).map(([storeId, store]) => (
           <Link
-            href={`/restaurants/${restaurant.id}`}
+            href={`/store/${storeId}`}
             className="hover:scale-95 transition ease-in-out duration-300 relative z-10"
-            key={i}
+            key={storeId}
           >
-            <RestaurantCardTopRated key={i} restaurant={restaurant} />
+            <RestaurantCardTopRated key={storeId} restaurant={store} />
           </Link>
         ))}
       </div>

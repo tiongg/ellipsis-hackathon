@@ -1,6 +1,5 @@
 import React from 'react';
 import { StarIcon } from '@heroicons/react/24/solid';
-import { Link } from 'react-router-dom';
 
 export type Restaurant = {
   name: string;
