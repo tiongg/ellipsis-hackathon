@@ -4,9 +4,11 @@ import { PropsWithChildren } from 'react';
 import axios from 'axios';
 import { SWRConfig } from 'swr';
 
+import CartInitalizer from '@frontend/providers/CartInitalizer';
 import Footer from '../components/Footer';
 import Navbar from '../components/Nav';
 import AuthProvider from '../providers/AuthProviders';
+import ReduxProvider from '../providers/ReduxProvider';
 import { fetcher } from '../utils/fetcher';
 import { getToken } from '../utils/token';
 
@@ -29,12 +31,16 @@ export default function Providers({ children }: PropsWithChildren) {
         fetcher,
       }}
     >
-      <AuthProvider>
-        {/* Might not make sense being in providers, but idc */}
-        <Navbar />
-        {children}
-        <Footer />
-      </AuthProvider>
+      <ReduxProvider>
+        <AuthProvider>
+          <CartInitalizer>
+            {/* Might not make sense being in providers, but idc */}
+            <Navbar />
+            {children}
+            <Footer />
+          </CartInitalizer>
+        </AuthProvider>
+      </ReduxProvider>
     </SWRConfig>
   );
 }
