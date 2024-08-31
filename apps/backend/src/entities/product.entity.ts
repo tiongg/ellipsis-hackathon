@@ -30,6 +30,9 @@ export class Product extends BaseEntity {
   @Column()
   productImageUrl: string;
 
+  @Column()
+  productCategory: string;
+
   @Column({
     type: 'numeric',
   })

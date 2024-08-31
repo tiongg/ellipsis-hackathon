@@ -7,4 +7,5 @@ export type ProductDto = {
   productPrice: number;
   productWeight: number;
   productImageUrl: string;
+  productCategory: string;
 };
