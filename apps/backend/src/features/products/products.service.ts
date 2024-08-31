@@ -19,9 +19,11 @@ export class ProductsService {
       productPrice,
       productWeight,
       productImageUrl,
+      productCategory,
     } = dto;
     await this.productRepository.save({
       productDescription,
+      productCategory,
       productName,
       productPrice,
       productWeight,

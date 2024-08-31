@@ -32,7 +32,7 @@ export default function Storefront() {
   return (
     <FullScreenCenter>
       <div className="flex gap-4 flex-col p-4">
-        <p>Store: {storefront.storeName}</p>
+        <p className="font-bold text-2xl">Store: {storefront.storeName}</p>
         <StorefrontPage storeId={storefront.storeId} />
       </div>
     </FullScreenCenter>

@@ -27,10 +27,10 @@ export default function ProductList({ storeId }: ProductListProps) {
 
   return (
     <div>
-      <h1>Products</h1>
+      <h1 className="font-bold text-xl">Products</h1>
       <div className="flex flex-row gap-2">
         {data.map((product) => (
-          <Card key={product.productId} className="w-100">
+          <Card key={product.productId} className="w-[250px]">
             <CardHeader>
               <CardTitle>{product.productName}</CardTitle>
               <CardDescription>{product.productDescription}</CardDescription>
@@ -42,9 +42,11 @@ export default function ProductList({ storeId }: ProductListProps) {
                 width={250}
                 height={200}
               />
-              {/* product price is actually */}
-              <p>Price: ${parseInt(`${product.productPrice}`).toFixed(2)}</p>
-              <p>Weight: {product.productWeight}kg</p>
+              <div>
+                {/* product price is actually not a number :)))*/}
+                <p>Price: ${parseInt(`${product.productPrice}`).toFixed(2)}</p>
+                <p>Weight: {product.productWeight}g</p>
+              </div>
             </CardContent>
           </Card>
         ))}

@@ -36,11 +36,7 @@ async function addProduct(storeId: string, data: FormInputs) {
  * Handles form submission and API call
  */
 export default function AddProductForm({ storeId }: AddProductFormProps) {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<FormInputs>();
+  const { register, handleSubmit } = useForm<FormInputs>();
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -63,11 +59,13 @@ export default function AddProductForm({ storeId }: AddProductFormProps) {
                 <Input {...register('productName')} />
                 <Label htmlFor="product-description">Product Description</Label>
                 <Input {...register('productDescription')} />
+                <Label htmlFor="product-description">Product Category</Label>
+                <Input {...register('productCategory')} />
                 <Label htmlFor="product-image-url">Product Image URL</Label>
                 <Input {...register('productImageUrl')} />
-                <Label htmlFor="product-price">Product Price</Label>
+                <Label htmlFor="product-price">Product Price ($)</Label>
                 <Input {...register('productPrice')} />
-                <Label htmlFor="product-weight">Product Weight</Label>
+                <Label htmlFor="product-weight">Product Weight (g)</Label>
                 <Input {...register('productWeight')} />
               </div>
             </DialogDescription>
