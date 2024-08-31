@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { useDispatch, useSelector } from 'react-redux';
 
 import {
@@ -6,6 +7,7 @@ import {
   removeFromCart,
   selectItemsInCart,
 } from '@frontend/utils/cart-slice';
+import { Button } from '@components/button';
 
 export default function CartItem() {
   const cartItems = useSelector(selectItemsInCart);
@@ -15,12 +17,13 @@ export default function CartItem() {
   const decreaseQuantity = (id: string) => dispatch(decreaseItemQuantity(id));
   const increaseQuantity = (id: string) => dispatch(increaseItemQuantity(id));
 
-  // console.log('cart: ', cartItems);
-
   if (cartItems.length === 0) {
     return (
-      <div className="flex grow min-h-[60vh] justify-center items-center">
+      <div className="flex flex-col grow min-h-[60vh] justify-center items-center">
         <p>Your cart is empty! Go Order Now!</p>
+        <Button asChild>
+          <Link href="/home">Home</Link>
+        </Button>
       </div>
     );
   }
@@ -51,10 +54,10 @@ export default function CartItem() {
 
               <p className="my-2 space-x-1">
                 <span className="font-semibold">
-                  ${(item?.quantity * (item.price / 100)).toFixed(2)}
+                  ${(item?.quantity * item.price).toFixed(2)}
                 </span>
                 <span className="text-gray-800 font-normal">
-                  ({item.price / 100} × {item?.quantity})
+                  ({parseInt(`${item.price}`).toFixed(2)} × {item?.quantity})
                 </span>
               </p>
 

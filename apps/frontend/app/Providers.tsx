@@ -4,6 +4,7 @@ import { PropsWithChildren } from 'react';
 import axios from 'axios';
 import { SWRConfig } from 'swr';
 
+import CartInitalizer from '@frontend/providers/CartInitalizer';
 import Footer from '../components/Footer';
 import Navbar from '../components/Nav';
 import AuthProvider from '../providers/AuthProviders';
@@ -32,10 +33,12 @@ export default function Providers({ children }: PropsWithChildren) {
     >
       <ReduxProvider>
         <AuthProvider>
-          {/* Might not make sense being in providers, but idc */}
-          <Navbar />
-          {children}
-          <Footer />
+          <CartInitalizer>
+            {/* Might not make sense being in providers, but idc */}
+            <Navbar />
+            {children}
+            <Footer />
+          </CartInitalizer>
         </AuthProvider>
       </ReduxProvider>
     </SWRConfig>

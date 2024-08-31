@@ -13,15 +13,8 @@ type CartState = {
   items: CartItem[];
 };
 
-const getFromLocalStorage = (key: string) => {
-  if (!key || typeof window === 'undefined') {
-    return '';
-  }
-  return localStorage.getItem(key);
-};
-
 const initialState: CartState = {
-  items: JSON.parse(getFromLocalStorage('cart') || '[]'),
+  items: [],
 };
 
 const cartSlice = createSlice({
@@ -68,6 +61,10 @@ const cartSlice = createSlice({
       state.items = [];
       localStorage.removeItem('cart');
     },
+
+    setInitalCart: (state, action: PayloadAction<CartItem[]>) => {
+      state.items = action.payload;
+    },
   },
 });
 
@@ -86,6 +83,7 @@ export const {
   increaseItemQuantity,
   decreaseItemQuantity,
   clearCart,
+  setInitalCart,
 } = cartSlice.actions;
 
 export default cartSlice.reducer;

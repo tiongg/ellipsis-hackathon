@@ -10,19 +10,18 @@ import {
 } from '@heroicons/react/24/solid';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { useSelector } from 'react-redux';
 
 import { selectItemsInCart } from '@frontend/utils/cart-slice';
+import { useAppSelector } from '@frontend/utils/redux-selectors';
 import { useAuth } from '../providers/AuthProviders';
 import { Badge } from './Badge';
 import Logo from './Logo';
 
 export default function Navbar() {
   const { self, signOut } = useAuth();
-  const cartItems = useSelector(selectItemsInCart);
+  const items = useAppSelector(selectItemsInCart);
   const router = useRouter();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [items, setItems] = useState(cartItems ?? []); // Assuming this will be managed elsewhere in your app
 
   const handleToggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -51,7 +50,7 @@ export default function Navbar() {
               href="/about"
               className="p-2 md:px-4 hover:bg-gray-50 rounded-md flex items-center gap-2"
             >
-              <BuildingOfficeIcon className="w-4 h-4 text-gray-700" />{' '}
+              <BuildingOfficeIcon className="w-4 h-4 text-gray-700" />
               <p className="hidden md:block">About</p>
             </Link>
           </li>
@@ -60,7 +59,7 @@ export default function Navbar() {
               href="/contact"
               className="p-2 md:px-4 hover:bg-gray-50 rounded-md flex items-center gap-2"
             >
-              <PhoneIcon className="w-4 h-4 text-gray-700" />{' '}
+              <PhoneIcon className="w-4 h-4 text-gray-700" />
               <p className="hidden md:block">Contact</p>
             </Link>
           </li>
@@ -69,7 +68,7 @@ export default function Navbar() {
               href="/cart"
               className="p-2 relative md:px-4 hover:bg-gray-50 rounded-md flex items-center gap-2"
             >
-              <ShoppingBagIcon className="w-4 h-4 text-gray-700" />{' '}
+              <ShoppingBagIcon className="w-4 h-4 text-gray-700" />
               <p className="hidden md:block">Cart</p>
               <Badge count={items.length} />
             </Link>
@@ -121,7 +120,8 @@ export default function Navbar() {
                   href="/contact"
                   className="p-2 md:px-4 hover:bg-gray-50 rounded-md flex items-center gap-2"
                 >
-                  <PhoneIcon className="w-4 h-4 text-gray-700" /> <p>Contact</p>
+                  <PhoneIcon className="w-4 h-4 text-gray-700" />
+                  <p>Contact</p>
                 </Link>
               </li>
               <li>
