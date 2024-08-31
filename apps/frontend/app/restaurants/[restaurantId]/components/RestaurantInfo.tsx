@@ -1,7 +1,8 @@
 import { StarIcon } from '@heroicons/react/24/solid';
+
 import { RestaurantInfoProps } from '../typings/menuType';
 
-const RestaurantInfo = ({ info }: RestaurantInfoProps) => {
+export default function RestaurantInfo({ info }: RestaurantInfoProps) {
   const { name, sla, areaName, totalRatingsString, avgRatingString, cuisines } =
     info;
 
@@ -31,5 +32,4 @@ const RestaurantInfo = ({ info }: RestaurantInfoProps) => {
       </div>
     </div>
   );
-};
-export default RestaurantInfo;
+}

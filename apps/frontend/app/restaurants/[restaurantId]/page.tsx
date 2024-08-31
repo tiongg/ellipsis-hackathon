@@ -1,4 +1,8 @@
 'use client';
+
+import { Storefront } from '@shared-types/features/storefront/get-storefronts.dto';
+import useSWR from 'swr';
+
 import RestaurantInfo from './components/RestaurantInfo';
 import RestaurantMenu from './components/RestaurantMenu';
 
@@ -69,29 +73,38 @@ const menu = [
   },
 ];
 
-const info = {
-  name: 'McDonalds',
-  sla: {
-    lastMileTravelString: '15 mins',
-  },
-  areaName: 'Singapore',
-  totalRatingsString: '1,234 ratings',
-  avgRatingString: '4.5',
-  cuisines: ['Fast Food', 'Burgers'],
-};
-
-
 export default function RestaurantPage({
-  params,
+  params: { restaurantId },
 }: {
-  params: { restaurant_id: string };
+  params: { restaurantId: string };
 }) {
-  const { restaurant_id } = params;
+  const { data: listings, isLoading: isLoadingListings } = useSWR(
+    `/api/listing?storeId=${restaurantId}`
+  );
+
+  //TODO: this can be ssr
+  const { data: store, isLoading: isLoadingStore } = useSWR<Storefront>(
+    `/api/storefront/${restaurantId}`
+  );
+
+  if (isLoadingListings || !listings || isLoadingStore || !store) {
+    return <p>Loading...</p>;
+  }
 
   return (
     <div>
       <div className="container mx-auto my-8">
-        <RestaurantInfo info={info} />
+        <RestaurantInfo
+          info={{
+            name: store.storeName,
+            description: store.description,
+            areaName: `Singapore ${store.postalCode}`,
+            avgRatingString: '4.5',
+            cuisines: ['Fast Food', 'Burgers'],
+            sla: { lastMileTravelString: '15 mins' },
+            totalRatingsString: '1,234 ratings',
+          }}
+        />
         <RestaurantMenu menu={menu} />
       </div>
     </div>

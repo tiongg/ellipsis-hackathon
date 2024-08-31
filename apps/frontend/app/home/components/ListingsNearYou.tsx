@@ -89,7 +89,7 @@ export default function ListingsNearYou() {
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-8">
         {Object.entries(stores).map(([storeId, store]) => (
           <Link
-            href={`/store/${storeId}`}
+            href={`/restaurants/${storeId}`}
             className="hover:scale-95 transition ease-in-out duration-300 relative z-10"
             key={storeId}
           >

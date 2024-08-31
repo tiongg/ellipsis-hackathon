@@ -21,6 +21,7 @@ export type RestaurantMenuItemProps = {
 export type RestaurantInfoProps = {
   info: {
     name: string;
+    description: string;
     sla: {
       lastMileTravelString: string;
     };
