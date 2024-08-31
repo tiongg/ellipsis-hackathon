@@ -2,8 +2,8 @@ import {
   Body,
   Controller,
   Get,
+  Param,
   Post,
-  Query,
   RawBodyRequest,
   Req,
   Res,
@@ -22,6 +22,7 @@ import { PaymentService } from './payment.service';
 export class PaymentController {
   constructor(private readonly paymentService: PaymentService) {}
 
+  //why is this a post...
   @Post('checkout')
   async createCheckoutSession(
     @RequestUser() user: RequestUserType,
@@ -40,7 +41,7 @@ export class PaymentController {
   }
 
   @Get(':paymentId')
-  async getPayment(@Query('paymentId') paymentId: string) {
+  async getPayment(@Param('paymentId') paymentId: string) {
     return this.paymentService.getPaymentInfo(paymentId);
   }
 }

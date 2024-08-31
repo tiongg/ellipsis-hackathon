@@ -1,9 +1,16 @@
+import { BuyProductDto } from '@shared-types/features/payment/buy-product.dto';
+import axios from 'axios';
 import { useSelector } from 'react-redux';
 
 import {
   selectItemsInCart,
   selectTotalPrice,
 } from '@frontend/utils/cart-slice';
+
+async function checkout(dto: BuyProductDto) {
+  const res = await axios.post('/api/payment/checkout', dto);
+  window.location = res.data.url;
+}
 
 export default function OrderSummary() {
   const cartItems = useSelector(selectItemsInCart);
@@ -28,7 +35,16 @@ export default function OrderSummary() {
         </div>
       </div>
 
-      <button className="w-full block mt-4 uppercase font-bold text-lg bg-primary text-white text-center p-4 rounded-md">
+      <button
+        className="w-full block mt-4 uppercase font-bold text-lg bg-primary text-white text-center p-4 rounded-md"
+        onClick={() => {
+          const dto = cartItems.reduce<BuyProductDto>((acc, item) => {
+            acc[item.id] = item.quantity;
+            return acc;
+          }, {});
+          checkout(dto);
+        }}
+      >
         Place order
       </button>
     </div>

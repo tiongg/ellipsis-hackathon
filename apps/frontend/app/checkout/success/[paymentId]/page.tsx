@@ -1,11 +1,14 @@
 'use client';
 
+import { useEffect } from 'react';
 import { GetPaymentInfoDto } from '@shared-types/features/payment/get-payment-info.dto';
 import _ from 'lodash';
 import Link from 'next/link';
 import useSWR from 'swr';
 
 import FullScreenCenter from '@frontend/components/FullScreenCenter';
+import { clearCart } from '@frontend/utils/cart-slice';
+import { useAppDispatch } from '@frontend/utils/redux-selectors';
 import { Button } from '@components/button';
 import {
   Card,
@@ -24,6 +27,12 @@ export default function CheckoutSuccessPage({
   const { data, isLoading } = useSWR<GetPaymentInfoDto>(
     `/api/payment/${paymentId}`
   );
+  const dispatch = useAppDispatch();
+
+  //Dirty way to clear cart
+  useEffect(() => {
+    dispatch(clearCart());
+  }, [dispatch]);
 
   if (isLoading || !data) {
     return <FullScreenCenter>Loading...</FullScreenCenter>;
@@ -43,12 +52,12 @@ export default function CheckoutSuccessPage({
   //You already know what it is!!!!
   const groupedOrders = _.groupBy(
     data.orders,
-    data.orders[0].listing.product.productId
+    (order) => order.listing.product.productId
   );
 
   return (
     <FullScreenCenter>
-      <Card className="max-w-[250px] m-auto">
+      <Card className="max-w-[250px] m-auto mt-8 bg-slate-50">
         <CardHeader>
           <CardTitle>Order success!</CardTitle>
           <CardDescription>Order summary</CardDescription>
@@ -61,6 +70,10 @@ export default function CheckoutSuccessPage({
               </p>
             </div>
           ))}
+          <br />
+          <p className="font-bold">
+            Total price: ${(data.amountTotal / 100).toFixed(2)}
+          </p>
           <Button className="mt-4" asChild>
             <Link href="/home">Home</Link>
           </Button>
