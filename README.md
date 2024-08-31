@@ -50,12 +50,12 @@ Only FE:
 ```bash
 npx nx run frontend:dev
 ```
-
 ## Packages structure
 
 1. Backend (Nest.js)
 2. Frontend (Next.js)
-3. Utils
+3. predict-food-demand (Python)
+4. Utils
 
 ## Other stuff included
 
@@ -73,6 +73,7 @@ npx nx run frontend:dev
 apps/
   - backend/
   - frontend/
+  - predict-food-demand/
 
 packages/
   - ui/
