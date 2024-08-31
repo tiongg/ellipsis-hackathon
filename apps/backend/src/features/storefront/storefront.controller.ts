@@ -2,6 +2,7 @@ import {
   Body,
   Controller,
   Get,
+  Param,
   Post,
   UnauthorizedException,
 } from '@nestjs/common';
@@ -41,7 +42,7 @@ export class StorefrontController {
   }
 
   @Get(':storeId')
-  getStoreDetails(storeId: string) {
+  getStoreDetails(@Param('storeId') storeId: string) {
     return this.storefrontService.getStoreDetails(storeId);
   }
 }

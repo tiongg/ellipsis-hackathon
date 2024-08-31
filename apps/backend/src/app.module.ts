@@ -5,6 +5,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 
 import { ServerStatusModule } from '@backend/features/server-status/server-status.module';
 import { DatabaseConfigurationService } from './config/typeorm.config';
+import { AdminModule } from './features/auth/admin/admin.module';
 import { AuthenticationModule } from './features/auth/auth.module';
 import { JwtAuthGuard } from './features/auth/guards/jwt-auth.guard';
 import { ListingModule } from './features/listing/listing.module';
@@ -28,6 +29,7 @@ import { StorefrontModule } from './features/storefront/storefront.module';
     ProductsModule,
     ListingModule,
     PaymentModule,
+    AdminModule,
   ],
   providers: [
     {
