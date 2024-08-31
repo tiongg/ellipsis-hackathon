@@ -15,7 +15,7 @@ export default function HomePage() {
 
   //TODO: make fancier
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <FullScreenCenter>Loading...</FullScreenCenter>;
   }
 
   // not authed

@@ -8,6 +8,16 @@ import { mutate } from 'swr';
 
 import FullScreenCenter from '@frontend/components/FullScreenCenter';
 import { useAuth } from '@frontend/providers/AuthProviders';
+import { Button } from '@components/button';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from '@components/card';
+import { Input } from '@components/input';
 
 async function updateName(dto: CompleteProfileDto) {
   const res = await axios.patch('/api/member/complete-profile', dto);
@@ -36,22 +46,32 @@ export default function OnboardingPage() {
 
   return (
     <FullScreenCenter>
-      <h1>Signup</h1>
-      <input
-        type="text"
-        placeholder="Name"
-        onChange={(e) => {
-          setName(e.target.value);
-        }}
-      />
-      <button
-        onClick={async () => {
-          await updateName({ name });
-          router.push('/home');
-        }}
-      >
-        Submit
-      </button>
+      <Card className="m-auto mt-8 bg-slate-50 w-[350px]">
+        <CardHeader>
+          <CardTitle>Complete Profile</CardTitle>
+          <CardDescription>
+            Enter your name to complete your profile
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          <Input
+            placeholder="Name"
+            onChange={(e) => {
+              setName(e.target.value);
+            }}
+          />
+        </CardContent>
+        <CardFooter>
+          <Button
+            onClick={async () => {
+              await updateName({ name });
+              router.push('/home');
+            }}
+          >
+            Submit
+          </Button>
+        </CardFooter>
+      </Card>
     </FullScreenCenter>
   );
 }
