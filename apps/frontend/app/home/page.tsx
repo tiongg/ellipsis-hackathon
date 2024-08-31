@@ -20,7 +20,7 @@ export default function HomePage() {
 
   // not authed
   if (!self) {
-    router.push('/');
+    router.push('/auth/login');
     return null;
   }
 
