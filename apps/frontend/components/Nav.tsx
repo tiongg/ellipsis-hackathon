@@ -5,7 +5,6 @@ import {
   Bars3Icon,
   BuildingOfficeIcon,
   HomeIcon,
-  PhoneIcon,
   ShoppingBagIcon,
 } from '@heroicons/react/24/solid';
 import Link from 'next/link';
@@ -51,16 +50,7 @@ export default function Navbar() {
               className="p-2 md:px-4 hover:bg-gray-50 rounded-md flex items-center gap-2"
             >
               <BuildingOfficeIcon className="w-4 h-4 text-gray-700" />
-              <p className="hidden md:block">About</p>
-            </Link>
-          </li>
-          <li>
-            <Link
-              href="/contact"
-              className="p-2 md:px-4 hover:bg-gray-50 rounded-md flex items-center gap-2"
-            >
-              <PhoneIcon className="w-4 h-4 text-gray-700" />
-              <p className="hidden md:block">Contact</p>
+              <p>About</p>
             </Link>
           </li>
           <li>
@@ -80,12 +70,14 @@ export default function Navbar() {
         </button>
 
         {!self ? (
-          <button
-            onClick={() => router.push('/auth/login')}
-            className="ml-4 bg-primary text-white p-2 px-4 rounded-md items-center gap-2"
-          >
-            Login
-          </button>
+          <Link href="/auth/login">
+            <button
+              onClick={() => router.push('/auth/login')}
+              className="ml-4 bg-primary text-white p-2 px-4 rounded-md items-center gap-2"
+            >
+              Login
+            </button>
+          </Link>
         ) : (
           <button
             onClick={signOut}
@@ -108,20 +100,11 @@ export default function Navbar() {
               </li>
               <li>
                 <Link
-                  href="/about"
+                  href="/storefront"
                   className="p-2 md:px-4 hover:bg-gray-50 rounded-md flex items-center gap-2"
                 >
                   <BuildingOfficeIcon className="w-4 h-4 text-gray-700" />
-                  <p>About</p>
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/contact"
-                  className="p-2 md:px-4 hover:bg-gray-50 rounded-md flex items-center gap-2"
-                >
-                  <PhoneIcon className="w-4 h-4 text-gray-700" />
-                  <p>Contact</p>
+                  <p>Store</p>
                 </Link>
               </li>
               <li>
