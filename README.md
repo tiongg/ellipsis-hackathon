@@ -1,7 +1,7 @@
 # Ellipsis hackathon
 
-Using nx repo and npm.<br/>
-FE uses [Nextjs](https://nextjs.org/), with [Tailwind](https://tailwindcss.com/) as the core styling option. [shadcn/ui](https://ui.shadcn.com/) and [Magic UI](https://magicui.design/) used for more commonly used/advanced components.<br/>
+Using [nx](https://nx.dev/) mono repo and [npm](https://www.npmjs.com/) as the package manager.<br/>
+FE uses [Nextjs](https://nextjs.org/), with [Tailwind](https://tailwindcss.com/) as the core styling option. [shadcn/ui](https://ui.shadcn.com/) and [Magic UI](https://magicui.design/) are used for more commonly used/advanced components.<br/>
 BE uses [Nestjs](https://docs.nestjs.com/), running [TypeORM](https://typeorm.io/) as the orm.<br/>
 Database is using [postgresql](https://www.postgresql.org/)
 
@@ -41,6 +41,14 @@ Copy contents of `.env.sample` into the `.env` file.
 
 👉Refer to [google oauth setup](docs/google-oauth-setup.md) to setup stripe (for authentication)<br/>
 👉Refer to [stripe setup](docs/stripe-setup.md) to setup stripe (for payment)
+
+## Initalizing the data
+
+The database provided is initally empty (i.e no tables). As such, we will have to initalize it.
+
+```node
+npm run db:run-migrations
+```
 
 ## Running the project
 
