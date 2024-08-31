@@ -5,7 +5,7 @@ import Link from 'next/link';
 import useSWR from 'swr';
 
 import FullScreenCenter from '../../components/FullScreenCenter';
-import StorefrontPage from './components/StorefrontPage';
+import DashboardPage from './components/Dashboard';
 
 /**
  * Main dashboard for storefront.
@@ -32,8 +32,11 @@ export default function Storefront() {
   return (
     <FullScreenCenter>
       <div className="flex gap-4 flex-col p-4">
-        <p className="font-bold text-2xl">Store: {storefront.storeName}</p>
-        <StorefrontPage storeId={storefront.storeId} />
+        <div className="flex justify-between">
+          <p className="font-bold text-2xl">Store: {storefront.storeName}</p>
+        </div>
+        <DashboardPage />
+        {/* <StorefrontPage storeId={storefront.storeId} /> */}
       </div>
     </FullScreenCenter>
   );

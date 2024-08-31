@@ -20,4 +20,4 @@ STRIPE_SIGNING_SECRET=<SIGNING-SECRET-HERE>
 ```
 
 > [!TIP]
-> When checking out, use the stripe [test card numbers](https://docs.stripe.com/testing?testing-method=card-numbers#visa) <br /> > `4242424242424242`, with a cvc of any 3 digits and an expiry date in the future
+> When checking out, use the stripe [test card numbers](https://docs.stripe.com/testing?testing-method=card-numbers#visa) <br /> `4242424242424242`, with a cvc of any 3 digits and an expiry date in the future

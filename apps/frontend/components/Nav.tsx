@@ -5,7 +5,6 @@ import {
   Bars3Icon,
   BuildingOfficeIcon,
   HomeIcon,
-  PhoneIcon,
   ShoppingBagIcon,
 } from '@heroicons/react/24/solid';
 import Link from 'next/link';
@@ -46,21 +45,12 @@ export default function Navbar() {
             </Link>
           </li>
           <li>
-          <Link
-                  href="/about"
-                  className="p-2 md:px-4 hover:bg-gray-50 rounded-md flex items-center gap-2"
-                >
-                  <BuildingOfficeIcon className="w-4 h-4 text-gray-700" />
-                  <p>About</p>
-                </Link>
-          </li>
-          <li>
             <Link
-              href="/dashboard"
+              href="/about"
               className="p-2 md:px-4 hover:bg-gray-50 rounded-md flex items-center gap-2"
             >
-              <PhoneIcon className="w-4 h-4 text-gray-700" />
-              <p className="hidden md:block">Dashboard</p>
+              <BuildingOfficeIcon className="w-4 h-4 text-gray-700" />
+              <p>About</p>
             </Link>
           </li>
           <li>
@@ -115,15 +105,6 @@ export default function Navbar() {
                 >
                   <BuildingOfficeIcon className="w-4 h-4 text-gray-700" />
                   <p>Store</p>
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/contact"
-                  className="p-2 md:px-4 hover:bg-gray-50 rounded-md flex items-center gap-2"
-                >
-                  <PhoneIcon className="w-4 h-4 text-gray-700" />
-                  <p>Contact</p>
                 </Link>
               </li>
               <li>

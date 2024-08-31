@@ -1,5 +1,5 @@
-import { ApexOptions } from 'apexcharts';
 import React, { useState } from 'react';
+import { ApexOptions } from 'apexcharts';
 import ReactApexChart from 'react-apexcharts';
 
 const options: ApexOptions = {
@@ -154,7 +154,6 @@ const ChartOne: React.FC = () => {
             </span>
             <div className="w-full">
               <p className="font-semibold text-primary">Total Revenue</p>
-            
             </div>
           </div>
           <div className="flex min-w-47.5">
@@ -163,7 +162,6 @@ const ChartOne: React.FC = () => {
             </span>
             <div className="w-full">
               <p className="font-semibold text-primary">Total Sales</p>
-      
             </div>
           </div>
         </div>
