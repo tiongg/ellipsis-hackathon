@@ -1,11 +1,13 @@
 # Ellipsis hackathon
 
-Using nx repo and npm.
-FE uses [Nextjs](https://nextjs.org/), with [Tailwind](https://tailwindcss.com/) as the core styling option. [shadcn/ui](https://ui.shadcn.com/) and [Magic UI](https://magicui.design/) used for more commonly used/advanced components.
-BE uses [Nestjs](https://docs.nestjs.com/), running [TypeORM](https://typeorm.io/) as the orm.
+Using nx repo and npm.<br/>
+FE uses [Nextjs](https://nextjs.org/), with [Tailwind](https://tailwindcss.com/) as the core styling option. [shadcn/ui](https://ui.shadcn.com/) and [Magic UI](https://magicui.design/) used for more commonly used/advanced components.<br/>
+BE uses [Nestjs](https://docs.nestjs.com/), running [TypeORM](https://typeorm.io/) as the orm.<br/>
 Database is using [postgresql](https://www.postgresql.org/)
 
 Deployed on [fly.io](https://fly.io/), utilising a database from [supabase](https://supabase.com/)
+
+Visit production at: https://ellipsis-aegis.fly.dev/
 
 ## Setting up:
 
@@ -31,6 +33,15 @@ Start database container with:
 docker compose up -d
 ```
 
+## Settings up enviroment variables
+
+Create a `.env` file at root.
+
+Copy contents of `.env.sample` into the `.env` file.
+
+👉Refer to [google oauth setup](docs/google-oauth-setup.md) to setup stripe (for authentication)
+👉Refer to [stripe setup](docs/stripe-setup.md) to setup stripe (for payment)
+
 ## Running the project
 
 To run both FE and BE:
@@ -51,30 +62,18 @@ Only FE:
 npx nx run frontend:dev
 ```
 
-## Packages structure
+## Seeding mock data
 
-1. Backend (Nest.js)
-2. Frontend (Next.js)
-3. Utils
+With the project running, run:
 
-## Other stuff included
-
-1. docker-compose (postgres db)
-2. Dockerfile (BE)
-3. Dockerfile (FE)
-
-## Directory structure
-
-> [!TIP]
-> Apps directory is used for stuff that will end up being the final product
-> Packages directory is for stuff that apps depends on
-
+```bash
+curl http://localhost:2000/admin/seed-mock-data
 ```
-apps/
-  - backend/
-  - frontend/
 
-packages/
-  - ui/
-  - utils/
+This will seed the stores and products. This only has to be ran once.
+
+```bash
+curl http://localhost:2000/admin/seed-listings
 ```
+
+This will create 10 listings for all products. Run this when products are out of stock.
