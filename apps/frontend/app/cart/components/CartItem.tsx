@@ -5,15 +5,15 @@ import {
   increaseItemQuantity,
   removeFromCart,
   selectItemsInCart,
-} from '../../store/features/cartSlice';
+} from '@frontend/utils/cart-slice';
 
 export default function CartItem() {
   const cartItems = useSelector(selectItemsInCart);
   const dispatch = useDispatch();
 
-  const removeItem = (id: number) => dispatch(removeFromCart(id));
-  const decreaseQuantity = (id: number) => dispatch(decreaseItemQuantity(id));
-  const increaseQuantity = (id: number) => dispatch(increaseItemQuantity(id));
+  const removeItem = (id: string) => dispatch(removeFromCart(id));
+  const decreaseQuantity = (id: string) => dispatch(decreaseItemQuantity(id));
+  const increaseQuantity = (id: string) => dispatch(increaseItemQuantity(id));
 
   // console.log('cart: ', cartItems);
 
@@ -41,9 +41,7 @@ export default function CartItem() {
               />
             </div>
             <div className="basis-9/12">
-              <p className="text-lg font-semibold">
-                {item.name}
-              </p>
+              <p className="text-lg font-semibold">{item.name}</p>
 
               <p className="hidden md:block">
                 {item.description?.length > 50
@@ -53,12 +51,7 @@ export default function CartItem() {
 
               <p className="my-2 space-x-1">
                 <span className="font-semibold">
-                  $
-                  {(
-                    (
-                      item?.quantity * (item.price / 100)
-                    ).toFixed(2)
-                  )}
+                  ${(item?.quantity * (item.price / 100)).toFixed(2)}
                 </span>
                 <span className="text-gray-800 font-normal">
                   ({item.price / 100} × {item?.quantity})

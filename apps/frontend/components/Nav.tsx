@@ -12,8 +12,9 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useSelector } from 'react-redux';
 
-import { selectItemsInCart } from '../app/store/features/cartSlice';
+import { selectItemsInCart } from '@frontend/utils/cart-slice';
 import { useAuth } from '../providers/AuthProviders';
+import { Badge } from './Badge';
 import Logo from './Logo';
 
 export default function Navbar() {
@@ -70,11 +71,7 @@ export default function Navbar() {
             >
               <ShoppingBagIcon className="w-4 h-4 text-gray-700" />{' '}
               <p className="hidden md:block">Cart</p>
-              {items.length > 0 && (
-                <p className="absolute -top-1 -right-1 bg-primary text-white flex justify-center items-center w-5 h-5 text-xs rounded-full">
-                  {items.length}
-                </p>
-              )}
+              <Badge count={items.length} />
             </Link>
           </li>
         </ul>
@@ -115,7 +112,7 @@ export default function Navbar() {
                   href="/about"
                   className="p-2 md:px-4 hover:bg-gray-50 rounded-md flex items-center gap-2"
                 >
-                  <BuildingOfficeIcon className="w-4 h-4 text-gray-700" />{' '}
+                  <BuildingOfficeIcon className="w-4 h-4 text-gray-700" />
                   <p>About</p>
                 </Link>
               </li>
@@ -134,11 +131,7 @@ export default function Navbar() {
                 >
                   <ShoppingBagIcon className="w-4 h-4 text-gray-700" />{' '}
                   <p>Cart</p>
-                  {items.length > 0 && (
-                    <p className="absolute -top-1 -right-1 bg-primary text-white flex justify-center items-center w-5 h-5 text-xs rounded-full">
-                      {items.length}
-                    </p>
-                  )}
+                  <Badge count={items.length} />
                 </Link>
               </li>
             </ul>

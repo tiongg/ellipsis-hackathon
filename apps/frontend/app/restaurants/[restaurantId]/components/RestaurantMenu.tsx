@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { Menu } from '../typings/menuType';
 import RestaurantMenuItem from './RestaurantMenuItem';
 
-const RestaurantMenu = ({ menu }: { menu: Menu[] }) => {
+export default function RestaurantMenu({ menu }: { menu: Menu[] }) {
   const [activeAccordionIndex, setActiveAccordionIndex] = useState<
     null | number
   >(0);
@@ -18,7 +18,7 @@ const RestaurantMenu = ({ menu }: { menu: Menu[] }) => {
 
   return (
     <div className="my-4">
-      {menu?.map((m, i: number) => {
+      {menu.map((m, i) => {
         return (
           <RestaurantMenuItem
             menu={m}
@@ -31,6 +31,4 @@ const RestaurantMenu = ({ menu }: { menu: Menu[] }) => {
       })}
     </div>
   );
-};
-
-export default RestaurantMenu;
+}

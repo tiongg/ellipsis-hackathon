@@ -1,9 +1,10 @@
 export type MenuItem = {
-  id: number;
+  id: string;
   name: string;
   price: number;
   description: string;
   imageUrl: string;
+  amountLeft: number;
 };
 
 export type Menu = {
