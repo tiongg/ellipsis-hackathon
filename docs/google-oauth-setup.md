@@ -24,8 +24,8 @@ Developer contact information: Your email
 15. Click on 'Create credentials' (at the top, right below the search bar)
 16. Select 'OAuth client ID'
 17. Select 'Web application'
-18. Under 'Authorized JavaScript origins', add 'http://localhost:3000'
-19. Under 'Authorized redirect URIs', add 'http://localhost:3000/auth/google/redirect'
+18. Under 'Authorized JavaScript origins', add `http://localhost:3000`
+19. Under 'Authorized redirect URIs', add `http://localhost:3000/auth/google/redirect`
 20. Click on 'Create'
 21. Note the Client ID and Client secret
 22. Set enviroment secrets to:

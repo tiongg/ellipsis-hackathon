@@ -39,7 +39,7 @@ Create a `.env` file at root.
 
 Copy contents of `.env.sample` into the `.env` file.
 
-👉Refer to [google oauth setup](docs/google-oauth-setup.md) to setup stripe (for authentication)
+👉Refer to [google oauth setup](docs/google-oauth-setup.md) to setup stripe (for authentication)<br/>
 👉Refer to [stripe setup](docs/stripe-setup.md) to setup stripe (for payment)
 
 ## Running the project
