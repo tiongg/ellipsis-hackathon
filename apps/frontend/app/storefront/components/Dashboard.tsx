@@ -1,9 +1,19 @@
 'use client';
 
-import CardDataStats from './CardDataStats';
-import ChartOne from './charts/ChartOne';
-import ChartTwo from './charts/ChartTwo';
-import ProductTable from './tables/ProductTable';
+import dynamic from 'next/dynamic';
+
+const CardDataStats = dynamic(() => import('./CardDataStats'), {
+  ssr: false,
+});
+const ChartOne = dynamic(() => import('./charts/ChartOne'), {
+  ssr: false,
+});
+const ChartTwo = dynamic(() => import('./charts/ChartTwo'), {
+  ssr: false,
+});
+const ProductTable = dynamic(() => import('./tables/ProductTable'), {
+  ssr: false,
+});
 
 export default function DashboardPage() {
   return (
